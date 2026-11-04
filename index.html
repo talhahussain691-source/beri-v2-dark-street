@@ -18,12 +18,12 @@
 :root{--ink:#0B0B0D;--fg:#F4F1EA;--mute:#ABA69C;--paper:#EFE6D6;--display:'Anton',Impact,sans-serif;--tag-fill:'GraffitiBomb Fill','Anton',Impact,sans-serif;--body:'Inter',system-ui,sans-serif;--ease:cubic-bezier(.2,.7,.2,1)}
 html{scroll-behavior:smooth}
 body{margin:0;background:#0B0B0D}
-a{color:#F4F1EA}a:hover{color:#F2508C}
+a{color:#F4F1EA}a:hover{color:#22C3F0}
 .wall{position:relative;isolation:isolate;background-color:#101012;background-image:linear-gradient(rgba(11,11,13,.78),rgba(11,11,13,.86)),url("assets/blob/def4eaa24c6d3dcb6e6e11f58f1ea990.webp");background-size:cover;background-position:center}
 .wall::before{content:"";position:absolute;inset:0;z-index:-1;background-image:url("assets/blob/f3b063545c55864824826123cf2c73c4.png");background-size:330px 210px;opacity:.05;pointer-events:none}
 .grain{background-image:radial-gradient(rgba(0,0,0,.06) 1px,transparent 1.3px),radial-gradient(rgba(0,0,0,.04) 1px,transparent 1.3px);background-size:5px 5px,9px 9px;background-position:0 0,2px 3px}
 .street-link{position:relative;color:#F4F1EA;text-decoration:none}
-.street-link::after{content:"";position:absolute;left:0;right:0;bottom:-7px;height:3px;background:#F2508C;transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
+.street-link::after{content:"";position:absolute;left:0;right:0;bottom:-7px;height:3px;background:#22C3F0;transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
 .street-link:hover{color:#F4F1EA}.street-link:hover::after,.street-link.is-current::after{transform:scaleX(1)}
 .top-nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px}
 .top-nav>a:first-child{justify-self:start}
@@ -32,7 +32,7 @@ a{color:#F4F1EA}a:hover{color:#F2508C}
 .pill-link:hover{background:rgba(255,214,0,.18);color:#FFFFFF}
 .pill-link.is-current{color:#FFD600;font-weight:700}
 .pill-cta{display:inline-flex;align-items:center;min-height:44px;margin-left:8px;padding:0 22px;border-radius:999px;background:#FFD600;color:#0B0B0D;font-weight:700;text-decoration:none;transition:background .2s ease,color .2s ease}
-.pill-cta:hover{background:#F2508C;color:#0B0B0D}
+.pill-cta:hover{background:#22C3F0;color:#0B0B0D}
 @keyframes flick{0%,18%,22%,52%,56%,100%{opacity:1}20%,54%{opacity:.45}}
 .flick{animation:flick 6s linear infinite}
 @keyframes tapeL{from{transform:translateX(0)}to{transform:translateX(-50%)}}
@@ -40,7 +40,7 @@ a{color:#F4F1EA}a:hover{color:#F2508C}
 @keyframes tapeR{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 .tape-r{animation:tapeR 60s linear infinite}
 .btn-solid{transition:background .2s ease}
-.btn-solid:hover{background:#F2508C;color:#0B0B0D}
+.btn-solid:hover{background:#22C3F0;color:#0B0B0D}
 .btn-ghost{transition:background .2s ease,color .2s ease}
 .btn-ghost:hover{background:#F4F1EA;color:#0B0B0D}
 .hero-tear{display:block}
@@ -116,7 +116,7 @@ a{color:#F4F1EA}a:hover{color:#F2508C}
 <svg aria-hidden="true" viewBox="0 0 96 80" style="position: absolute; right: -22px; top: -48px; width: 84px; height: 70px; transform: rotate(14deg)"><path d="M10 62 L 14 20 L 34 44 L 48 8 L 62 42 L 84 18 L 86 62 Z" fill="none" stroke="#FFD600" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"></path><path d="M8 73 C 34 68, 60 71, 90 69" fill="none" stroke="#FFD600" stroke-width="6" stroke-linecap="round"></path><circle cx="48" cy="5" r="4" fill="#FFD600"></circle></svg>
 </span>
 </h1>
-<p class="hero-head" style="margin: 0; font-family: var(--display); font-size: 104px; line-height: 0.9; text-transform: uppercase"><span style="color: #F2508C">Power.</span><br><span style="position: relative; display: inline-block; color: #3DD683">Pods.<svg aria-hidden="true" viewBox="0 0 300 28" preserveAspectRatio="none" style="position: absolute; left: -2%; bottom: -12px; width: 104%; height: 20px"><path d="M4 18 C 60 8, 120 22, 176 12 S 268 8, 296 15" fill="none" stroke="#FFD600" stroke-width="7" stroke-linecap="round"></path></svg></span><br><span style="color: #A27AF0">Puffs.</span></p>
+<p class="hero-head" style="margin: 0; font-family: var(--display); font-size: 104px; line-height: 0.9; text-transform: uppercase"><span style="color: #22C3F0">Power.</span><br><span style="position: relative; display: inline-block; color: #3DD683">Pods.<svg aria-hidden="true" viewBox="0 0 300 28" preserveAspectRatio="none" style="position: absolute; left: -2%; bottom: -12px; width: 104%; height: 20px"><path d="M4 18 C 60 8, 120 22, 176 12 S 268 8, 296 15" fill="none" stroke="#FFD600" stroke-width="7" stroke-linecap="round"></path></svg></span><br><span style="color: #A27AF0">Puffs.</span></p>
 <p style="margin: 0; max-width: 460px; font-size: 18px; color: #ABA69C">Crush hits 40W. Cliq clicks between 25 refillable pod flavors. Cirql goes up to 150K puffs. One of them is yours.</p>
 <div style="display: flex; flex-wrap: wrap; gap: 14px; padding-top: 8px">
 <a class="btn-solid" href="#pick" style="display: inline-flex; align-items: center; gap: 12px; min-height: 56px; padding: 0 28px; background: #FFD600; color: #0B0B0D; font-family: var(--display); font-size: 19px; letter-spacing: 0.08em; text-decoration: none">FIND YOUR BERI
@@ -143,7 +143,7 @@ a{color:#F4F1EA}a:hover{color:#F2508C}
 </div>
 </section>
 
-<svg aria-hidden="true" viewBox="0 0 1440 90" preserveAspectRatio="none" style="display: block; width: 100%; height: 70px; margin-top: -1px; background: #0B0B0D"><path d="{{dripPath}}" fill="#F2508C"></path></svg>
+<svg aria-hidden="true" viewBox="0 0 1440 90" preserveAspectRatio="none" style="display: block; width: 100%; height: 70px; margin-top: -1px; background: #0B0B0D"><path d="{{dripPath}}" fill="#22C3F0"></path></svg>
 
 <div aria-hidden="true" style="position: relative; overflow: hidden; padding: 56px 0 100px; background: #0B0B0D">
 <div style="position: absolute; z-index: 0; left: -40px; right: -40px; top: 50%; transform: translateY(-50%) rotate(5deg); background: #F4F1EA; border-top: 3px solid #0B0B0D; border-bottom: 3px solid #0B0B0D">
@@ -165,11 +165,11 @@ a{color:#F4F1EA}a:hover{color:#F2508C}
 <h2 class="wall-head" style="margin: 0; font-family: var(--display); font-weight: 400; font-size: 120px; line-height: 0.88; text-transform: uppercase">Pick your<br>BERI.</h2>
 <svg class="tag-wrap" aria-hidden="true" viewBox="0 0 360 190" style="position: absolute; left: 340px; top: 74px; width: 340px; height: auto; overflow: visible; transform: rotate(-8deg); pointer-events: none">
 <g class="{{tagCls}}" fill="none" stroke-linecap="round" stroke-linejoin="round">
-<path pathLength="1" style="--d: 0s" stroke="#F2508C" stroke-width="16" d="M40 140 C 38 104, 40 66, 46 30"></path>
-<path pathLength="1" style="--d: 0.3s" stroke="#F2508C" stroke-width="16" d="M44 34 C 96 12, 104 66, 50 82 C 112 78, 110 142, 38 138"></path>
-<path pathLength="1" style="--d: 0.7s" stroke="#F2508C" stroke-width="16" d="M168 34 C 140 30, 124 36, 126 50 C 128 64, 150 74, 162 80 C 132 84, 118 100, 122 118 C 126 134, 150 140, 172 132"></path>
-<path pathLength="1" style="--d: 1.1s" stroke="#F2508C" stroke-width="16" d="M196 140 C 198 104, 200 70, 202 36 C 250 26, 262 74, 208 86 C 230 100, 244 120, 262 142"></path>
-<path pathLength="1" style="--d: 1.5s" stroke="#F2508C" stroke-width="16" d="M292 40 C 290 74, 288 106, 286 140"></path>
+<path pathLength="1" style="--d: 0s" stroke="#22C3F0" stroke-width="16" d="M40 140 C 38 104, 40 66, 46 30"></path>
+<path pathLength="1" style="--d: 0.3s" stroke="#22C3F0" stroke-width="16" d="M44 34 C 96 12, 104 66, 50 82 C 112 78, 110 142, 38 138"></path>
+<path pathLength="1" style="--d: 0.7s" stroke="#22C3F0" stroke-width="16" d="M168 34 C 140 30, 124 36, 126 50 C 128 64, 150 74, 162 80 C 132 84, 118 100, 122 118 C 126 134, 150 140, 172 132"></path>
+<path pathLength="1" style="--d: 1.1s" stroke="#22C3F0" stroke-width="16" d="M196 140 C 198 104, 200 70, 202 36 C 250 26, 262 74, 208 86 C 230 100, 244 120, 262 142"></path>
+<path pathLength="1" style="--d: 1.5s" stroke="#22C3F0" stroke-width="16" d="M292 40 C 290 74, 288 106, 286 140"></path>
 <path pathLength="1" style="--d: 1.75s" stroke="#FFD600" stroke-width="6" d="M276 26 L 280 4 L 290 18 L 300 2 L 308 24 Z"></path>
 <path pathLength="1" style="--d: 1.95s" stroke="#FFD600" stroke-width="8" d="M18 168 C 110 150, 220 178, 330 152 C 342 149, 352 142, 348 132"></path>
 <path pathLength="1" style="--d: 2.3s" stroke="#3DD683" stroke-width="7" d="M330 52 L 350 72 M 350 52 L 330 72"></path>
@@ -215,7 +215,7 @@ a{color:#F4F1EA}a:hover{color:#F2508C}
 </div>
 <div style="position: relative">
 <span class="slap" aria-hidden="true" style="right: -14px; top: -30px; padding: 10px 16px; background: #FFFFFF; font-size: 24px; transform: rotate(7deg)">100% REAL</span>
-<span class="slap" aria-hidden="true" style="left: -30px; top: -36px; width: 76px; height: 76px; border-radius: 50%; background: #F2508C; font-size: 28px; transform: rotate(-12deg)">21+</span>
+<span class="slap" aria-hidden="true" style="left: -30px; top: -36px; width: 76px; height: 76px; border-radius: 50%; background: #22C3F0; font-size: 28px; transform: rotate(-12deg)">21+</span>
 <div style="overflow-x: auto; border: 3px solid #F4F1EA; background: #0B0B0D; box-shadow: 10px 10px 0 #FFD600">
 <div role="table" aria-label="BERI devices compared" style="min-width: 760px">
 <div role="row" class="cmp-grid" style="border-bottom: 3px solid #F4F1EA">
@@ -264,7 +264,7 @@ a{color:#F4F1EA}a:hover{color:#F2508C}
 <section id="verify" class="wall" style="scroll-margin-top: 120px; padding: 120px 32px">
 <div style="max-width: 1320px; margin: 0 auto; display: flex; flex-direction: column; gap: 48px">
 <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px">
-<h2 class="neon-head flick" style="margin: 0; font-family: var(--display); font-weight: 400; font-size: 120px; line-height: 0.88; text-transform: uppercase; color: #FFE3F0; text-shadow: 0 0 6px #F2508C, 0 0 18px #F2508C, 0 0 42px rgba(242,80,140,0.75)">Spot a<br>fake.</h2>
+<h2 class="neon-head flick" style="margin: 0; font-family: var(--display); font-weight: 400; font-size: 120px; line-height: 0.88; text-transform: uppercase; color: #E2F8FF; text-shadow: 0 0 6px #22C3F0, 0 0 18px #22C3F0, 0 0 42px rgba(34,195,240,0.75)">Spot a<br>fake.</h2>
 <p style="margin: 0; max-width: 400px; font-size: 18px; color: #ABA69C">Fakes are everywhere. Every genuine BERI box carries a security label, and checking it takes three steps.</p>
 </div>
 <ol class="steps" style="list-style: none; margin: 0; padding: 0">
@@ -280,9 +280,9 @@ a{color:#F4F1EA}a:hover{color:#F2508C}
 </div>
 </section>
 
-<section id="wholesale" style="scroll-margin-top: 120px; position: relative; overflow: hidden; padding: 130px 32px; background: #F2508C; color: #0B0B0D; isolation: isolate">
+<section id="wholesale" style="scroll-margin-top: 120px; position: relative; overflow: hidden; padding: 130px 32px; background: #22C3F0; color: #0B0B0D; isolation: isolate">
 <div aria-hidden="true" style="position: absolute; inset: 0; z-index: -2; background-image: url(&quot;assets/blob/e9c9fd12132998f3c43de9a6641b83a8.webp&quot;); background-size: cover; background-position: center"></div>
-<div aria-hidden="true" style="position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(242,80,140,0.94) 0%, rgba(242,80,140,0.86) 45%, rgba(242,80,140,0.55) 100%)"></div>
+<div aria-hidden="true" style="position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(34,195,240,0.94) 0%, rgba(34,195,240,0.86) 45%, rgba(34,195,240,0.55) 100%)"></div>
 <div style="max-width: 1320px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 48px">
 <div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
 <span style="font-family: var(--display); font-size: 16px; letter-spacing: 0.3em">FOR SHOPS AND DISTRIBUTORS</span>
@@ -377,7 +377,7 @@ class Component extends DCLogic {
     // Product facts. Cirql values still to come from the client are shown as [brackets].
     const devices = [
       {
-        name: 'Crush', want: 'MORE POWER', color: '#F2508C', splat: '#FFD600', r: 4, img: 'assets/blob/ad8952b79bf25e8fb5dcbb19894d0676.webp', alt: 'BERI Crush in Mango Bomb, orange with a gold side panel',
+        name: 'Crush', want: 'MORE POWER', color: '#22C3F0', splat: '#FFD600', r: 4, img: 'assets/blob/ad8952b79bf25e8fb5dcbb19894d0676.webp', alt: 'BERI Crush in Mango Bomb, orange with a gold side panel',
         why: '40W Crush Mode on a quad-coil mesh, with adjustable airflow and an HD screen. The hardest-hitting BERI.',
         stats: ['UP TO 50K PUFFS', '40W CRUSH MODE', '1.77" HD SCREEN', '1,000 mAh']
       },
@@ -430,7 +430,7 @@ class Component extends DCLogic {
       tearRimStyle: tearBase + 'width: 56%; background: #FFFFFF; clip-path: ' + ragged(7, 5),
       tearPurpleStyle: tearBase + 'width: 54.8%; background-color: #A27AF0; clip-path: ' + ragged(29, 4.5),
       tearGreenStyle: tearBase + 'width: 53.5%; background-color: #3DD683; clip-path: ' + ragged(41, 4),
-      tearPaperStyle: tearBase + 'width: 52.2%; background-color: #F2508C; clip-path: ' + ragged(19, 4),
+      tearPaperStyle: tearBase + 'width: 52.2%; background-color: #22C3F0; clip-path: ' + ragged(19, 4),
       // Hand-sprayed paint splats on the black side: [left, top, size, colour, turn].
       splats: [['29%', '60px', 210, '#3DD683', 0], ['24%', '40%', 160, '#FFD600', 40], ['30%', '74%', 190, '#A27AF0', -30]].map((p, i) => ({
         color: p[3],
@@ -446,7 +446,7 @@ class Component extends DCLogic {
         alt: d.alt,
         sticker: d.sticker,
         wrapStyle: 'position: absolute; z-index: ' + (i === 1 ? 3 : 2) + '; left: ' + d.x + '%; top: ' + d.y + '%; margin: 0; transform: translate(-50%, -50%) rotate(' + d.r + 'deg)',
-        imgStyle: 'display: block; height: ' + d.h + 'px; width: auto; filter: drop-shadow(14px 24px 18px rgba(60,0,24,0.42))',
+        imgStyle: 'display: block; height: ' + d.h + 'px; width: auto; filter: drop-shadow(14px 24px 18px rgba(0,30,45,0.42))',
         stickerStyle: 'position: absolute; ' + (d.left ? 'left: ' : 'right: ') + d.sx + '; top: ' + d.sy + '; padding: 3px 10px; border: 2px solid #0B0B0D; background: ' + d.bg + '; color: #0B0B0D; font-family: var(--display); font-size: 20px; letter-spacing: 0.04em; white-space: nowrap; transform: rotate(' + d.sr + 'deg)'
       })),
       dripPath: dripPath,

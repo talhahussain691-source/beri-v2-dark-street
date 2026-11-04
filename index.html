@@ -6,38 +6,67 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Inter:wght@400;500;600;700;800&amp;family=Permanent+Marker&amp;display=swap">
 <style>
 @font-face{font-family:"GraffitiBomb Fill";src:url("assets/blob/973be0322be6aff5ecd840094128f0bb.ttf") format("truetype");font-display:swap}
+@font-face{font-family:"GraffitiBomb Outline";src:url("assets/blob/0ca31839f8404f38e272b3a42bac8ab3.ttf") format("truetype");font-display:swap}
+.tag-draw path{stroke-dasharray:1;stroke-dashoffset:1}
+.tag-draw.is-drawn path{animation:tagDraw .45s cubic-bezier(.5,0,.3,1) forwards;animation-delay:var(--d,0s)}
+@keyframes tagDraw{to{stroke-dashoffset:0}}
+.slap{position:absolute;z-index:3;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;border:3px solid #0B0B0D;box-shadow:0 0 0 4px #F4F1EA,5px 8px 12px rgba(0,0,0,.5);font-family:var(--display);color:#0B0B0D;letter-spacing:.04em;line-height:1;white-space:nowrap;pointer-events:none}
+.marker{font-family:'Permanent Marker','Anton',cursive}
 :root{--ink:#0B0B0D;--fg:#F4F1EA;--mute:#ABA69C;--paper:#EFE6D6;--display:'Anton',Impact,sans-serif;--tag-fill:'GraffitiBomb Fill','Anton',Impact,sans-serif;--body:'Inter',system-ui,sans-serif;--ease:cubic-bezier(.2,.7,.2,1)}
 html{scroll-behavior:smooth}
 body{margin:0;background:#0B0B0D}
 a{color:#F4F1EA}a:hover{color:#F2508C}
-.wall{position:relative;isolation:isolate;background-color:#101012}
-.wall::before{content:"";position:absolute;inset:0;z-index:-1;background-image:url("assets/blob/f3b063545c55864824826123cf2c73c4.png");background-size:330px 210px;opacity:.06;pointer-events:none}
+.wall{position:relative;isolation:isolate;background-color:#101012;background-image:linear-gradient(rgba(11,11,13,.78),rgba(11,11,13,.86)),url("assets/blob/def4eaa24c6d3dcb6e6e11f58f1ea990.webp");background-size:cover;background-position:center}
+.wall::before{content:"";position:absolute;inset:0;z-index:-1;background-image:url("assets/blob/f3b063545c55864824826123cf2c73c4.png");background-size:330px 210px;opacity:.05;pointer-events:none}
 .grain{background-image:radial-gradient(rgba(0,0,0,.06) 1px,transparent 1.3px),radial-gradient(rgba(0,0,0,.04) 1px,transparent 1.3px);background-size:5px 5px,9px 9px;background-position:0 0,2px 3px}
 .street-link{position:relative;color:#F4F1EA;text-decoration:none}
 .street-link::after{content:"";position:absolute;left:0;right:0;bottom:-7px;height:3px;background:#F2508C;transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
 .street-link:hover{color:#F4F1EA}.street-link:hover::after,.street-link.is-current::after{transform:scaleX(1)}
+.top-nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px}
+.top-nav>a:first-child{justify-self:start}
+.nav-pill{justify-self:center;display:flex;align-items:center;gap:2px;padding:6px 6px 6px 14px;background:rgba(255,214,0,.16);-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);border:1px solid rgba(255,214,0,.55);border-radius:999px;box-shadow:0 12px 30px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,240,150,.25);font-family:var(--body);font-size:15px;font-weight:500;white-space:nowrap}
+.pill-link{display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border-radius:999px;color:#F4F1EA;text-decoration:none;transition:background .2s ease,color .2s ease}
+.pill-link:hover{background:rgba(255,214,0,.18);color:#FFFFFF}
+.pill-link.is-current{color:#FFD600;font-weight:700}
+.pill-cta{display:inline-flex;align-items:center;min-height:44px;margin-left:8px;padding:0 22px;border-radius:999px;background:#FFD600;color:#0B0B0D;font-weight:700;text-decoration:none;transition:background .2s ease,color .2s ease}
+.pill-cta:hover{background:#F2508C;color:#0B0B0D}
 @keyframes flick{0%,18%,22%,52%,56%,100%{opacity:1}20%,54%{opacity:.45}}
 .flick{animation:flick 6s linear infinite}
 @keyframes tapeL{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .tape-l{animation:tapeL 40s linear infinite}
+@keyframes tapeR{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+.tape-r{animation:tapeR 60s linear infinite}
 .btn-solid{transition:background .2s ease}
 .btn-solid:hover{background:#F2508C;color:#0B0B0D}
 .btn-ghost{transition:background .2s ease,color .2s ease}
 .btn-ghost:hover{background:#F4F1EA;color:#0B0B0D}
-.poster img{transition:transform .5s var(--ease)}
-.poster:hover img{transform:translateY(-10px)}
-.poster-cta:hover{color:#F4F1EA;background:#24242A}
-.sticker{transition:transform .3s var(--ease)}
-.sticker:hover{transform:rotate(0deg) translateY(-6px) !important;z-index:2}
 .hero-tear{display:block}
 .tear-print::before{content:"";position:absolute;inset:0;background-image:url("assets/blob/f3b063545c55864824826123cf2c73c4.png");background-size:220px 140px;opacity:.14;mix-blend-mode:multiply}
-.crew-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:24px}
-.crew-feature{grid-row:span 2}
-@media (max-width:899px){.hero-tear{display:none}.hero-head{font-size:68px !important}.wall-head{font-size:64px !important}.neon-head{font-size:60px !important}.stock-head{font-size:110px !important}.crew-grid{grid-template-columns:minmax(0,1fr)}.crew-feature{grid-row:auto}.crew-side{flex-direction:column !important}}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.flick,.tape-l{animation:none}}
+.tear-print::after,.paper-tex::after{content:"";position:absolute;inset:0;background-image:url("assets/blob/fff9cae5995094b6ce16f5ea41bbfe03.webp");background-size:cover;background-position:center;mix-blend-mode:multiply;opacity:.55;pointer-events:none}
+.pick-btn{transition:transform .2s var(--ease),background .2s ease,color .2s ease}
+.pick-btn:hover{transform:translateY(-3px)}
+@keyframes matchIn{from{opacity:0;transform:translateY(18px) rotate(var(--r,0deg))}to{opacity:1;transform:translateY(0) rotate(var(--r,0deg))}}
+.match-dev{animation:matchIn .5s var(--ease) both}
+.match-cta{transition:background .2s ease,color .2s ease}
+.match-cta:hover{background:#F4F1EA;color:#0B0B0D}
+.cmp-row{transition:background .2s ease}
+.cmp-row:hover{background:#1C1C21}
+.mood-btn{transition:background .2s ease,color .2s ease,border-color .2s ease}
+.mood-btn:hover{border-color:#F4F1EA}
+.sticker{transition:transform .3s var(--ease)}
+.sticker:hover{transform:rotate(0deg) translateY(-6px) !important;z-index:2}
+.ws-input{transition:box-shadow .2s ease}
+.ws-input:focus{outline:none;box-shadow:4px 4px 0 #0B0B0D}
+.ws-send{transition:transform .2s var(--ease),box-shadow .2s var(--ease)}
+.ws-send:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #FFD600}
+.match-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:center}
+.cmp-grid{display:grid;grid-template-columns:22% repeat(3,minmax(0,1fr));align-items:center}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+@media (max-width:899px){.top-nav{grid-template-columns:auto minmax(0,1fr);padding:0 16px !important}.nav-pill{justify-self:end;min-width:0;max-width:100%;padding-right:0 !important;overflow-x:auto;scrollbar-width:none;padding-left:8px}.pill-link{padding:0 10px;font-size:14px}.pill-cta{padding:0 16px;position:sticky;right:0;box-shadow:none}.hero-tear{display:none}.hero-head{font-size:68px !important}.wall-head{font-size:64px !important}.neon-head{font-size:60px !important}.stock-head{font-size:110px !important}.match-grid{grid-template-columns:minmax(0,1fr)}.match-name{font-size:110px !important}.match-img{height:340px !important}.steps{grid-template-columns:minmax(0,1fr)}.foot-wall{height:280px !important}.pick-cans{width:170px !important}.pod-grid{grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:24px 16px !important}.tag-wrap{width:190px !important;left:150px !important;top:30px !important}.ghost-name{font-size:170px !important}.hero-note{display:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.flick,.tape-l,.tape-r,.match-dev{animation:none}.tag-draw path{stroke-dashoffset:0;animation:none}}
 </style>
 
 </head>
@@ -50,49 +79,60 @@ a{color:#F4F1EA}a:hover{color:#F2508C}
 <div style="position: sticky; top: 0; z-index: 50">
 <div style="background: #FFFFFF; color: #000000; text-align: center; font-weight: 700; font-size: 15px; padding: 8px 16px; line-height: 1.35">WARNING: This product contains nicotine. Nicotine is an addictive chemical.</div>
 <header style="{{navStyle}}">
-<nav style="max-width: 1320px; margin: 0 auto; padding: 0 32px; min-height: 80px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+<nav class="top-nav" style="max-width: 1320px; margin: 0 auto; padding: 0 32px; min-height: 80px">
 <a href="#top" aria-label="BERI home" style="display: flex; align-items: center; text-decoration: none">
 <img src="assets/blob/cff617f74bd4c275aaad6310168f9b41.png" alt="BERI" style="display: block; height: 46px; width: auto">
 </a>
-<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 36px; font-family: var(--display); font-size: 18px; letter-spacing: 0.08em; text-transform: uppercase">
-<a class="street-link is-current" href="#top">Home</a>
-<a class="street-link" href="#lineup">Products</a>
-<a class="street-link" href="#verify">Authenticate</a>
-<a class="street-link" href="#wholesale">Wholesale</a>
+<div class="nav-pill" style="border-style: none; background-color: #FFFFFF28; opacity: 1">
+<a class="pill-link is-current" href="#top" aria-current="page">Home</a>
+<a class="pill-link" href="#pick">Pick yours</a>
+<a class="pill-link" href="#compare">Compare</a>
+<a class="pill-link" href="#flavors">Flavors</a>
+<a class="pill-link" href="#verify">Verify</a>
+<a class="pill-cta" href="#wholesale">Wholesale</a>
 </div>
 </nav>
 </header>
 </div>
 
 <main id="top">
-<section class="wall" aria-label="BERI" style="position: relative; overflow: hidden; margin-top: -80px; min-height: 860px; isolation: isolate">
+<section class="wall" aria-label="BERI" style="position: relative; overflow: hidden; margin-top: -104px; min-height: 860px; isolation: isolate">
 <div class="hero-tear" aria-hidden="true" style="{{tearRimStyle}}"></div>
 <div class="hero-tear grain" aria-hidden="true" style="{{tearPurpleStyle}}"></div>
 <div class="hero-tear grain" aria-hidden="true" style="{{tearGreenStyle}}"></div>
 <div class="hero-tear grain tear-print" aria-hidden="true" style="{{tearPaperStyle}}"></div>
 <div aria-hidden="true" style="position: absolute; inset: 0; z-index: 0; pointer-events: none">
 <sc-for list="{{splats}}" as="sp" hint-placeholder-count="3">
-<svg viewBox="0 0 120 120" style="{{sp.style}}"><path d="M60 14c9 1 11 13 20 12s17 5 14 15 5 17-3 23-4 17-15 16-12 10-21 5-18-1-21-12-12-12-7-22 4-17 14-19 9-19 19-18z" fill="{{sp.color}}"></path><circle cx="104" cy="22" r="5" fill="{{sp.color}}"></circle><circle cx="14" cy="96" r="4" fill="{{sp.color}}"></circle><circle cx="100" cy="98" r="3" fill="{{sp.color}}"></circle><path d="M70 96c2 8 1 16-2 22" stroke="{{sp.color}}" stroke-width="5" stroke-linecap="round" fill="none"></path></svg>
+<svg viewBox="0 0 120 120" style="{{sp.style}}"><path d="{{sp.d}}" fill="{{sp.color}}"></path></svg>
 </sc-for>
 </div>
 
 <div style="position: relative; z-index: 1; max-width: 1320px; margin: 0 auto; padding: 170px 32px 120px; display: flex; flex-wrap: wrap; align-items: center; gap: 48px">
-<div style="flex: 1 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+<div style="flex: 0 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
 <span style="align-self: flex-start; padding: 6px 14px; border: 2px solid #F4F1EA; font-family: var(--display); font-size: 15px; letter-spacing: 0.24em">PREMIUM DISPOSABLES · ADULTS 21+</span>
 <h1 style="margin: 0">
-<img src="assets/blob/cff617f74bd4c275aaad6310168f9b41.png" alt="BERI" style="display: block; width: 100%; max-width: 440px; height: auto">
+<span style="position: relative; display: inline-block; width: 100%; max-width: 400px">
+<img src="assets/blob/cff617f74bd4c275aaad6310168f9b41.png" alt="BERI" style="display: block; width: 100%; height: auto">
+<svg aria-hidden="true" viewBox="0 0 96 80" style="position: absolute; right: -22px; top: -48px; width: 84px; height: 70px; transform: rotate(14deg)"><path d="M10 62 L 14 20 L 34 44 L 48 8 L 62 42 L 84 18 L 86 62 Z" fill="none" stroke="#FFD600" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"></path><path d="M8 73 C 34 68, 60 71, 90 69" fill="none" stroke="#FFD600" stroke-width="6" stroke-linecap="round"></path><circle cx="48" cy="5" r="4" fill="#FFD600"></circle></svg>
+</span>
 </h1>
-<p class="hero-head" style="margin: 0; font-family: var(--display); font-size: 96px; line-height: 0.92; text-transform: uppercase">Up to<br><span style="position: relative; display: inline-block; color: #FFD600">50,000<svg aria-hidden="true" viewBox="0 0 300 28" preserveAspectRatio="none" style="position: absolute; left: -2%; bottom: -14px; width: 104%; height: 22px"><path d="M4 18 C 60 8, 120 22, 176 12 S 268 8, 296 15" fill="none" stroke="#F2508C" stroke-width="7" stroke-linecap="round"></path><path d="M30 24 C 90 16, 170 26, 250 19" fill="none" stroke="#F2508C" stroke-width="4" stroke-linecap="round" opacity="0.8"></path></svg></span><br>puffs.</p>
-<p style="margin: 0; max-width: 440px; font-size: 18px; color: #ABA69C">Crush, Cliq and Cirql. Mesh coils, big batteries and Type-C charging in a lineup made to go the distance.</p>
+<p class="hero-head" style="margin: 0; font-family: var(--display); font-size: 104px; line-height: 0.9; text-transform: uppercase"><span style="color: #F2508C">Power.</span><br><span style="position: relative; display: inline-block; color: #3DD683">Pods.<svg aria-hidden="true" viewBox="0 0 300 28" preserveAspectRatio="none" style="position: absolute; left: -2%; bottom: -12px; width: 104%; height: 20px"><path d="M4 18 C 60 8, 120 22, 176 12 S 268 8, 296 15" fill="none" stroke="#FFD600" stroke-width="7" stroke-linecap="round"></path></svg></span><br><span style="color: #A27AF0">Puffs.</span></p>
+<p style="margin: 0; max-width: 460px; font-size: 18px; color: #ABA69C">Crush hits 40W. Cliq clicks between 25 refillable pod flavors. Cirql goes up to 150K puffs. One of them is yours.</p>
 <div style="display: flex; flex-wrap: wrap; gap: 14px; padding-top: 8px">
-<a class="btn-solid" href="#lineup" style="display: inline-flex; align-items: center; gap: 12px; min-height: 56px; padding: 0 28px; background: #F4F1EA; color: #0B0B0D; font-family: var(--display); font-size: 19px; letter-spacing: 0.08em; text-decoration: none">SEE THE LINEUP
+<a class="btn-solid" href="#pick" style="display: inline-flex; align-items: center; gap: 12px; min-height: 56px; padding: 0 28px; background: #FFD600; color: #0B0B0D; font-family: var(--display); font-size: 19px; letter-spacing: 0.08em; text-decoration: none">FIND YOUR BERI
 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"></path><path d="M6 13l6 6 6-6"></path></svg>
 </a>
-<a class="btn-ghost" href="#verify" style="display: inline-flex; align-items: center; min-height: 56px; padding: 0 26px; border: 2px solid #F4F1EA; color: #F4F1EA; font-family: var(--display); font-size: 19px; letter-spacing: 0.08em; text-decoration: none">VERIFY YOUR BERI</a>
+<a class="btn-ghost" href="#verify" style="display: inline-flex; align-items: center; min-height: 56px; padding: 0 26px; border: 2px solid #F4F1EA; color: #F4F1EA; font-family: var(--display); font-size: 19px; letter-spacing: 0.08em; text-decoration: none">SPOT A FAKE</a>
 </div>
 </div>
 
-<div style="flex: 1 1 560px; min-width: 0; position: relative; height: 620px">
+<div style="flex: 1 1 600px; min-width: 0; position: relative; height: 640px">
+<div class="hero-note" aria-hidden="true" style="position: absolute; z-index: 4; left: 72%; top: -40px; display: flex; align-items: flex-start; gap: 2px; transform: rotate(-6deg); pointer-events: none">
+<span class="marker" style="font-size: 40px; line-height: 1; color: #0B0B0D">new!</span>
+<svg viewBox="0 0 80 70" style="width: 74px; height: 64px; margin-top: 18px"><path d="M6 8 C 40 4, 66 18, 62 58" fill="none" stroke="#0B0B0D" stroke-width="5" stroke-linecap="round"></path><path d="M50 46 L 62 60 L 72 44" fill="none" stroke="#0B0B0D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<svg aria-hidden="true" viewBox="0 0 40 40" style="position: absolute; z-index: 4; left: 4%; top: 2%; width: 34px; height: 34px; pointer-events: none"><path d="M20 2 C 21 14, 26 19, 38 20 C 26 21, 21 26, 20 38 C 19 26, 14 21, 2 20 C 14 19, 19 14, 20 2 Z" fill="#FFFFFF"></path></svg>
+<svg aria-hidden="true" viewBox="0 0 40 40" style="position: absolute; z-index: 4; left: 40%; bottom: 0; width: 26px; height: 26px; pointer-events: none"><path d="M6 6 L 34 34 M 34 6 L 6 34" fill="none" stroke="#0B0B0D" stroke-width="6" stroke-linecap="round"></path></svg>
 <sc-for list="{{heroDevices}}" as="d" hint-placeholder-count="3">
 <figure style="{{d.wrapStyle}}">
 <img src="{{d.img}}" alt="{{d.alt}}" style="{{d.imgStyle}}">
@@ -105,46 +145,111 @@ a{color:#F4F1EA}a:hover{color:#F2508C}
 
 <svg aria-hidden="true" viewBox="0 0 1440 90" preserveAspectRatio="none" style="display: block; width: 100%; height: 70px; margin-top: -1px; background: #0B0B0D"><path d="{{dripPath}}" fill="#F2508C"></path></svg>
 
-<div aria-hidden="true" style="overflow: hidden; padding: 40px 0 56px; background: #0B0B0D">
-<div style="transform: rotate(-2deg); margin: 0 -40px; background: #FFD600; border-top: 3px solid #0B0B0D; border-bottom: 3px solid #0B0B0D">
+<div aria-hidden="true" style="position: relative; overflow: hidden; padding: 56px 0 100px; background: #0B0B0D">
+<div style="position: absolute; z-index: 0; left: -40px; right: -40px; top: 50%; transform: translateY(-50%) rotate(5deg); background: #F4F1EA; border-top: 3px solid #0B0B0D; border-bottom: 3px solid #0B0B0D">
+<div class="tape-r" style="display: flex; width: max-content; gap: 40px; padding: 8px 0; font-family: var(--display); font-size: 21px; letter-spacing: 0.06em; color: #0B0B0D; white-space: nowrap; text-transform: uppercase">
+<sc-for list="{{tapeB}}" as="tb" hint-placeholder-count="6"><span>{{tb.t}}</span></sc-for>
+</div>
+</div>
+<div style="position: relative; z-index: 1; transform: rotate(-3deg); margin: 0 -40px; background: #FFD600; border-top: 3px solid #0B0B0D; border-bottom: 3px solid #0B0B0D; box-shadow: 0 8px 18px rgba(0,0,0,0.45)">
 <div class="tape-l" style="display: flex; width: max-content; gap: 40px; padding: 12px 0; font-family: var(--display); font-size: 30px; letter-spacing: 0.08em; color: #0B0B0D; white-space: nowrap">
 <sc-for list="{{tapeA}}" as="ta" hint-placeholder-count="12"><span>{{ta.t}}</span></sc-for>
 </div>
 </div>
 </div>
 
-<section id="lineup" style="scroll-margin-top: 120px; padding: 100px 32px 130px; background: #0B0B0D">
-<div style="max-width: 1320px; margin: 0 auto; display: flex; flex-direction: column; gap: 48px">
+<section id="pick" style="scroll-margin-top: 120px; padding: 90px 32px 130px; background: #0B0B0D">
+<div style="max-width: 1320px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px">
 <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px">
-<h2 class="wall-head" style="margin: 0; font-family: var(--display); font-weight: 400; font-size: 120px; line-height: 0.88; text-transform: uppercase">The lineup</h2>
-<p style="margin: 0; max-width: 400px; font-size: 18px; color: #ABA69C">Power, pods or puffs. Three devices, each built around one idea.</p>
+<div style="position: relative; padding-bottom: 28px">
+<h2 class="wall-head" style="margin: 0; font-family: var(--display); font-weight: 400; font-size: 120px; line-height: 0.88; text-transform: uppercase">Pick your<br>BERI.</h2>
+<svg class="tag-wrap" aria-hidden="true" viewBox="0 0 360 190" style="position: absolute; left: 340px; top: 74px; width: 340px; height: auto; overflow: visible; transform: rotate(-8deg); pointer-events: none">
+<g class="{{tagCls}}" fill="none" stroke-linecap="round" stroke-linejoin="round">
+<path pathLength="1" style="--d: 0s" stroke="#F2508C" stroke-width="16" d="M40 140 C 38 104, 40 66, 46 30"></path>
+<path pathLength="1" style="--d: 0.3s" stroke="#F2508C" stroke-width="16" d="M44 34 C 96 12, 104 66, 50 82 C 112 78, 110 142, 38 138"></path>
+<path pathLength="1" style="--d: 0.7s" stroke="#F2508C" stroke-width="16" d="M168 34 C 140 30, 124 36, 126 50 C 128 64, 150 74, 162 80 C 132 84, 118 100, 122 118 C 126 134, 150 140, 172 132"></path>
+<path pathLength="1" style="--d: 1.1s" stroke="#F2508C" stroke-width="16" d="M196 140 C 198 104, 200 70, 202 36 C 250 26, 262 74, 208 86 C 230 100, 244 120, 262 142"></path>
+<path pathLength="1" style="--d: 1.5s" stroke="#F2508C" stroke-width="16" d="M292 40 C 290 74, 288 106, 286 140"></path>
+<path pathLength="1" style="--d: 1.75s" stroke="#FFD600" stroke-width="6" d="M276 26 L 280 4 L 290 18 L 300 2 L 308 24 Z"></path>
+<path pathLength="1" style="--d: 1.95s" stroke="#FFD600" stroke-width="8" d="M18 168 C 110 150, 220 178, 330 152 C 342 149, 352 142, 348 132"></path>
+<path pathLength="1" style="--d: 2.3s" stroke="#3DD683" stroke-width="7" d="M330 52 L 350 72 M 350 52 L 330 72"></path>
+</g>
+</svg>
 </div>
-<div class="crew-grid">
-<sc-for list="{{crew}}" as="c" hint-placeholder-count="3">
-<article class="{{c.cls}}" style="{{c.style}}">
-<div style="{{c.bodyStyle}}">
-<span style="font-family: var(--display); font-size: 16px; letter-spacing: 0.24em">BERI · {{c.badge}}</span>
-<h3 style="{{c.nameStyle}}">{{c.name}}</h3>
-<p style="margin: 0; font-family: var(--display); font-size: 20px; letter-spacing: 0.04em; line-height: 1.3">{{c.stats}}</p>
-<p style="margin: 0; max-width: 360px; font-size: 15px; line-height: 1.55">{{c.text}}</p>
-<a class="poster-cta" href="#lineup" style="align-self: flex-start; display: inline-flex; align-items: center; min-height: 52px; padding: 0 24px; background: #0B0B0D; color: #F4F1EA; font-family: var(--display); font-size: 18px; letter-spacing: 0.06em; text-decoration: none">{{c.cta}}</a>
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 18px; max-width: 400px">
+<img class="pick-cans" src="assets/blob/3db62c54dcf800304a7beab892bebb42.webp" alt="" aria-hidden="true" style="display: block; width: 250px; height: auto; transform: rotate(7deg); filter: drop-shadow(12px 18px 16px rgba(0,0,0,0.6))">
+<p style="margin: 0; font-size: 18px; color: #ABA69C">Tell us what matters most and we will point you to the one built for it.</p>
 </div>
-<div style="{{c.imgBoxStyle}}">
-<img src="{{c.img}}" alt="{{c.alt}}" style="{{c.imgStyle}}">
+</div>
+<div role="group" aria-label="What matters most" style="display: flex; flex-wrap: wrap; gap: 14px">
+<sc-for list="{{pickBtns}}" as="pb" hint-placeholder-count="3">
+<button type="button" class="pick-btn" aria-pressed="{{pb.pressed}}" onClick="{{pb.pick}}" style="{{pb.style}}"><span style="font-size: 14px; letter-spacing: 0.24em; opacity: 0.8">I WANT</span>{{pb.label}}</button>
+</sc-for>
+</div>
+<article class="grain match-grid paper-tex" aria-live="polite" style="{{matchStyle}}">
+<span class="ghost-name" aria-hidden="true" style="position: absolute; z-index: 0; right: -24px; bottom: -70px; font-family: 'GraffitiBomb Outline', var(--display); font-size: 330px; line-height: 1; letter-spacing: -0.04em; color: rgba(11,11,13,0.2); white-space: nowrap; pointer-events: none; transform: rotate(-6deg)">{{match.name}}</span>
+<div style="position: relative; z-index: 1; box-sizing: border-box; padding: 56px 48px; display: flex; flex-direction: column; gap: 18px">
+<span style="align-self: flex-start; padding: 4px 12px; background: #0B0B0D; color: #F4F1EA; font-family: var(--display); font-size: 16px; letter-spacing: 0.24em">YOUR MATCH</span>
+<h3 class="match-name" style="margin: 0; font-family: var(--display); font-weight: 400; font-size: 180px; line-height: 0.8; text-transform: uppercase">{{match.name}}</h3>
+<p style="margin: 0; max-width: 460px; font-size: 19px; font-weight: 600; line-height: 1.45">{{match.why}}</p>
+<div style="display: flex; flex-wrap: wrap; gap: 10px; padding-top: 4px">
+<sc-for list="{{match.stats}}" as="st" hint-placeholder-count="4">
+<span style="{{st.style}}">{{st.t}}</span>
+</sc-for>
+</div>
+<a class="match-cta" href="#compare" style="align-self: flex-start; margin-top: 10px; display: inline-flex; align-items: center; min-height: 56px; padding: 0 26px; background: #0B0B0D; color: #F4F1EA; font-family: var(--display); font-size: 19px; letter-spacing: 0.06em; text-decoration: none">{{match.cta}}</a>
+</div>
+<div style="position: relative; z-index: 1; min-height: 560px; display: flex; align-items: center; justify-content: center">
+<svg aria-hidden="true" viewBox="0 0 120 120" style="position: absolute; width: 860px; height: 860px; max-width: none; opacity: 0.95; transform: rotate(-12deg)"><path d="{{match.splatD}}" fill="{{match.splat}}"></path></svg>
+<img class="match-dev match-img" src="{{match.img}}" alt="{{match.alt}}" style="{{match.imgStyle}}">
 </div>
 </article>
+</div>
+</section>
+
+<section id="compare" class="wall" style="scroll-margin-top: 120px; padding: 110px 32px 130px">
+<div style="max-width: 1320px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px">
+<h2 class="wall-head" style="margin: 0; font-family: var(--display); font-weight: 400; font-size: 120px; line-height: 0.88; text-transform: uppercase">Side<br>by side.</h2>
+<p style="margin: 0; max-width: 400px; font-size: 18px; color: #ABA69C">The numbers, straight. No fine print.</p>
+</div>
+<div style="position: relative">
+<span class="slap" aria-hidden="true" style="right: -14px; top: -30px; padding: 10px 16px; background: #FFFFFF; font-size: 24px; transform: rotate(7deg)">100% REAL</span>
+<span class="slap" aria-hidden="true" style="left: -30px; top: -36px; width: 76px; height: 76px; border-radius: 50%; background: #F2508C; font-size: 28px; transform: rotate(-12deg)">21+</span>
+<div style="overflow-x: auto; border: 3px solid #F4F1EA; background: #0B0B0D; box-shadow: 10px 10px 0 #FFD600">
+<div role="table" aria-label="BERI devices compared" style="min-width: 760px">
+<div role="row" class="cmp-grid" style="border-bottom: 3px solid #F4F1EA">
+<span role="columnheader" style="padding: 22px 28px; font-family: var(--display); font-size: 16px; letter-spacing: 0.24em; color: #ABA69C">SPEC</span>
+<sc-for list="{{cmpHead}}" as="ch" hint-placeholder-count="3">
+<span role="columnheader" style="padding: 18px 28px"><span style="{{ch.style}}">{{ch.name}}</span></span>
 </sc-for>
+</div>
+<sc-for list="{{cmpRows}}" as="cr" hint-placeholder-count="7">
+<div role="row" class="cmp-grid cmp-row" style="border-bottom: 1px solid #2E2E35">
+<span role="rowheader" style="padding: 20px 28px; font-family: var(--display); font-size: 20px; letter-spacing: 0.06em; text-transform: uppercase; color: #ABA69C">{{cr.label}}</span>
+<sc-for list="{{cr.cells}}" as="cc" hint-placeholder-count="3">
+<span role="cell" style="{{cc.style}}">{{cc.t}}</span>
+</sc-for>
+</div>
+</sc-for>
+</div>
+</div>
 </div>
 </div>
 </section>
 
-<section aria-labelledby="wall-title" class="wall" style="padding: 110px 32px 130px">
-<div style="max-width: 1320px; margin: 0 auto; display: flex; flex-direction: column; gap: 48px">
+<section id="flavors" style="scroll-margin-top: 120px; padding: 110px 32px 130px; background: #0B0B0D">
+<div style="max-width: 1320px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px">
 <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px">
-<h2 id="wall-title" class="wall-head" style="margin: 0; font-family: var(--display); font-weight: 400; font-size: 120px; line-height: 0.88; text-transform: uppercase">Find your<br>Cliq.</h2>
-<p style="margin: 0; max-width: 400px; font-size: 18px; color: #ABA69C">Ten from the wall. 25 pre-filled, refillable pod flavors in all.</p>
+<h2 class="wall-head" style="margin: 0; font-family: var(--display); font-weight: 400; font-size: 120px; line-height: 0.88; text-transform: uppercase">Flavor<br>by mood.</h2>
+<p style="margin: 0; max-width: 400px; font-size: 18px; color: #ABA69C">Ten Cliq pods off the wall. 25 in all, every one pre-filled and refillable.</p>
 </div>
-<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 34px 26px; padding: 12px 8px">
+<div role="group" aria-label="Filter flavors" style="display: flex; flex-wrap: wrap; gap: 12px">
+<sc-for list="{{moods}}" as="m" hint-placeholder-count="4">
+<button type="button" class="mood-btn" aria-pressed="{{m.pressed}}" onClick="{{m.pick}}" style="{{m.style}}">{{m.label}} <span style="opacity: 0.6">{{m.count}}</span></button>
+</sc-for>
+</div>
+<div class="pod-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 34px 26px; padding: 12px 8px; min-height: 380px; align-content: start">
 <sc-for list="{{pods}}" as="pd" hint-placeholder-count="10">
 <figure class="sticker" style="{{pd.style}}">
 <span aria-hidden="true" style="{{pd.tapeStyle}}"></span>
@@ -156,52 +261,75 @@ a{color:#F4F1EA}a:hover{color:#F2508C}
 </div>
 </section>
 
-<section id="verify" style="scroll-margin-top: 120px; padding: 120px 32px; background: #0B0B0D">
-<div style="max-width: 1100px; margin: 0 auto; box-sizing: border-box; padding: 64px 48px; border: 3px solid #F2508C; border-radius: 28px; box-shadow: 0 0 24px rgba(242,80,140,0.5), inset 0 0 24px rgba(242,80,140,0.28); display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center">
-<span style="font-family: var(--display); font-size: 16px; letter-spacing: 0.3em; color: #ABA69C">AUTHENTICATE</span>
-<h2 class="neon-head flick" style="margin: 0; font-family: var(--display); font-weight: 400; font-size: 110px; line-height: 0.9; text-transform: uppercase; color: #FFE3F0; text-shadow: 0 0 6px #F2508C, 0 0 18px #F2508C, 0 0 42px rgba(242,80,140,0.75)">Real or fake?</h2>
-<p style="margin: 0; max-width: 560px; font-size: 18px; color: #ABA69C">Every genuine BERI box carries a security label. Scratch it, enter the code and know in seconds.</p>
-<a class="btn-solid" href="#verify" style="display: inline-flex; align-items: center; min-height: 56px; padding: 0 30px; background: #F4F1EA; color: #0B0B0D; font-family: var(--display); font-size: 19px; letter-spacing: 0.08em; text-decoration: none">VERIFY YOUR BERI →</a>
+<section id="verify" class="wall" style="scroll-margin-top: 120px; padding: 120px 32px">
+<div style="max-width: 1320px; margin: 0 auto; display: flex; flex-direction: column; gap: 48px">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px">
+<h2 class="neon-head flick" style="margin: 0; font-family: var(--display); font-weight: 400; font-size: 120px; line-height: 0.88; text-transform: uppercase; color: #FFE3F0; text-shadow: 0 0 6px #F2508C, 0 0 18px #F2508C, 0 0 42px rgba(242,80,140,0.75)">Spot a<br>fake.</h2>
+<p style="margin: 0; max-width: 400px; font-size: 18px; color: #ABA69C">Fakes are everywhere. Every genuine BERI box carries a security label, and checking it takes three steps.</p>
+</div>
+<ol class="steps" style="list-style: none; margin: 0; padding: 0">
+<sc-for list="{{steps}}" as="s" hint-placeholder-count="3">
+<li style="{{s.style}}">
+<span aria-hidden="true" style="{{s.numStyle}}">{{s.n}}</span>
+<h3 style="margin: 0; font-family: var(--display); font-weight: 400; font-size: 40px; line-height: 1; text-transform: uppercase">{{s.title}}</h3>
+<p style="margin: 0; font-size: 16px; color: #ABA69C">{{s.text}}</p>
+</li>
+</sc-for>
+</ol>
+<a class="btn-solid" href="#verify" style="align-self: flex-start; display: inline-flex; align-items: center; min-height: 56px; padding: 0 30px; background: #F4F1EA; color: #0B0B0D; font-family: var(--display); font-size: 19px; letter-spacing: 0.08em; text-decoration: none">CHECK YOUR CODE →</a>
 </div>
 </section>
 
 <section id="wholesale" style="scroll-margin-top: 120px; position: relative; overflow: hidden; padding: 130px 32px; background: #F2508C; color: #0B0B0D; isolation: isolate">
-<div aria-hidden="true" style="position: absolute; inset: 0; z-index: -1; background-image: url(&quot;assets/blob/f3b063545c55864824826123cf2c73c4.png&quot;); background-size: 220px 140px; opacity: 0.12; mix-blend-mode: multiply"></div>
-<div style="max-width: 1320px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 40px">
-<div style="flex: 1 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
-<span style="font-family: var(--display); font-size: 16px; letter-spacing: 0.3em">WHOLESALE</span>
-<h2 class="stock-head" style="margin: 0; font-family: var(--tag-fill); font-weight: 400; font-size: 190px; line-height: 0.85; letter-spacing: -0.06em; color: #F4F1EA; -webkit-text-stroke: 3px #0B0B0D; text-shadow: 8px 8px 0 #0B0B0D">Stock<br>BERI</h2>
+<div aria-hidden="true" style="position: absolute; inset: 0; z-index: -2; background-image: url(&quot;assets/blob/e9c9fd12132998f3c43de9a6641b83a8.webp&quot;); background-size: cover; background-position: center"></div>
+<div aria-hidden="true" style="position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(242,80,140,0.94) 0%, rgba(242,80,140,0.86) 45%, rgba(242,80,140,0.55) 100%)"></div>
+<div style="max-width: 1320px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 48px">
+<div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+<span style="font-family: var(--display); font-size: 16px; letter-spacing: 0.3em">FOR SHOPS AND DISTRIBUTORS</span>
+<h2 class="stock-head" style="margin: 0; font-family: var(--tag-fill); font-weight: 400; font-size: 170px; line-height: 0.85; letter-spacing: -0.1em; color: #F4F1EA; -webkit-text-stroke: 3px #0B0B0D; text-shadow: 8px 8px 0 #0B0B0D; position: relative; text-align: left">Got a<br>shop?</h2>
+<p style="margin: 0; max-width: 460px; font-size: 20px; font-weight: 600">Put Crush, Cliq and Cirql on your shelf. Leave your details and the wholesale team gets back to you.</p>
 </div>
-<div style="flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
-<p style="margin: 0; font-size: 20px; font-weight: 600">Retailers and distributors: get wholesale pricing on all three lines, with authenticity verification on every box.</p>
-<a href="mailto:wholesale@beridisposable.com" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 12px; min-height: 56px; padding: 0 28px; background: #0B0B0D; color: #F4F1EA; font-family: var(--display); font-size: 20px; letter-spacing: 0.06em; text-decoration: none">wholesale@beridisposable.com</a>
-</div>
+<form onSubmit="{{sendWs}}" style="flex: 1 1 400px; min-width: 0; max-width: 520px; box-sizing: border-box; padding: 36px; background: #F4F1EA; border: 3px solid #0B0B0D; box-shadow: 12px 12px 0 #0B0B0D; display: flex; flex-direction: column; gap: 14px; transform: rotate(1deg)">
+<h3 style="margin: 0 0 4px; font-family: var(--display); font-weight: 400; font-size: 36px; line-height: 1; text-transform: uppercase">Wholesale request</h3>
+<label for="ws-shop" style="font-family: var(--display); font-size: 16px; letter-spacing: 0.12em">SHOP NAME</label>
+<input id="ws-shop" class="ws-input" type="text" value="{{wsShop}}" onChange="{{onShop}}" style="height: 54px; padding: 0 16px; border: 2px solid #0B0B0D; background: #FFFFFF; color: #0B0B0D; font: inherit; font-size: 17px">
+<label for="ws-city" style="font-family: var(--display); font-size: 16px; letter-spacing: 0.12em">CITY</label>
+<input id="ws-city" class="ws-input" type="text" value="{{wsCity}}" onChange="{{onCity}}" style="height: 54px; padding: 0 16px; border: 2px solid #0B0B0D; background: #FFFFFF; color: #0B0B0D; font: inherit; font-size: 17px">
+<button type="submit" class="ws-send" style="margin-top: 8px; height: 60px; border: none; background: #0B0B0D; color: #F4F1EA; font-family: var(--display); font-size: 20px; letter-spacing: 0.08em; cursor: pointer">EMAIL THE WHOLESALE TEAM →</button>
+<p style="margin: 0; font-size: 14px">Opens your email app, addressed to <a href="mailto:wholesale@beridisposable.com" style="color: #0B0B0D; font-weight: 700">wholesale@beridisposable.com</a></p>
+</form>
 </div>
 </section>
 </main>
 
-<footer style="border-top: 3px solid #F2508C; background: #0B0B0D">
-<div style="max-width: 1320px; margin: 0 auto; padding: 56px 32px 64px; display: flex; flex-direction: column; gap: 24px">
-<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px">
-<img src="assets/blob/cff617f74bd4c275aaad6310168f9b41.png" alt="BERI" style="display: block; height: 80px; width: auto">
+<footer style="position: relative; overflow: hidden; background: #0B0B0D">
+<div class="foot-wall" role="img" aria-label="BERI painted on a brick wall" style="position: relative; height: 620px; background-image: url(&quot;assets/blob/4f405d2eb5534fdb769cfaf90e07a529.webp&quot;); background-size: cover; background-position: center 40%">
+<div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, #0B0B0D 0%, rgba(11,11,13,0) 18%, rgba(11,11,13,0) 70%, #0B0B0D 100%)"></div>
+<span class="slap" aria-hidden="true" style="left: 9%; top: 16%; width: 76px; height: 76px; border-radius: 50%; background: #FFD600; font-size: 28px; transform: rotate(-14deg)">21+</span>
+<span class="slap" aria-hidden="true" style="right: 8%; top: 20%; padding: 8px 14px; background: #3DD683; font-size: 24px; transform: rotate(9deg)">TYPE-C</span>
+<span class="slap" aria-hidden="true" style="right: 12%; bottom: 20%; padding: 8px 14px; background: #A27AF0; font-size: 24px; transform: rotate(-5deg)">MESH COIL</span>
+</div>
+<div style="max-width: 1320px; margin: 0 auto; padding: 24px 32px 64px; display: flex; flex-direction: column; gap: 28px">
 <div style="display: flex; flex-wrap: wrap; gap: 28px; font-family: var(--display); font-size: 18px; letter-spacing: 0.08em; text-transform: uppercase">
-<a class="street-link" href="#top">Home</a>
-<a class="street-link" href="#lineup">Products</a>
-<a class="street-link" href="#verify">Authenticate</a>
+<a class="street-link" href="#pick">Pick yours</a>
+<a class="street-link" href="#compare">Compare</a>
+<a class="street-link" href="#flavors">Flavors</a>
+<a class="street-link" href="#verify">Verify</a>
 <a class="street-link" href="#wholesale">Wholesale</a>
 </div>
-</div>
+<div style="border-top: 2px solid #2E2E35; padding-top: 24px; display: flex; flex-direction: column; gap: 8px">
 <p style="margin: 0; font-size: 14px; color: #ABA69C">Sale of these products is restricted to adults 21 and over. WARNING: This product contains nicotine. Nicotine is an addictive chemical.</p>
 <p style="margin: 0; font-size: 14px; color: #ABA69C">Copyright © [YEAR] BERIdisposable.com – All Rights Reserved.</p>
+</div>
 </div>
 </footer>
 </div>
 </template>
-<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":5751}}'>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":7682}}'>
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { scrolled: false };
+    this.state = { scrolled: false, pick: 0, mood: 'all', wsShop: '', wsCity: '', tagOn: false };
   }
   componentDidMount() {
     this.onScroll = () => {
@@ -210,12 +338,20 @@ class Component extends DCLogic {
     };
     window.addEventListener('scroll', this.onScroll, { passive: true });
     this.onScroll();
+    // Spray the tag by the "Pick your BERI" heading once it comes into view.
+    const tag = document.querySelector('.tag-wrap');
+    if (!tag || !('IntersectionObserver' in window)) { this.setState({ tagOn: true }); return; }
+    this.tagObs = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) { this.setState({ tagOn: true }); this.tagObs.disconnect(); }
+    }, { threshold: 0.4 });
+    this.tagObs.observe(tag);
   }
   componentWillUnmount() {
     window.removeEventListener('scroll', this.onScroll);
+    if (this.tagObs) this.tagObs.disconnect();
   }
   renderVals() {
-    // A torn-paper edge like the BERI box art: a white paper rim under a cream sheet, both with a ragged left side.
+    // A torn-paper edge like the BERI box art: a white paper rim under coloured sheets, all with a ragged left side.
     const ragged = (seed, depth) => {
       const pts = [];
       let s = seed;
@@ -225,7 +361,9 @@ class Component extends DCLogic {
       }
       return 'polygon(' + pts.join(', ') + ', 100% 100%, 100% 0)';
     };
-    const tearBase = 'position: absolute; z-index: 0; top: 80px; bottom: 0; right: 0; pointer-events: none; ';
+    // Spray splatter shapes (spiky arms, bulb tips, flecks) drawn in a 120x120 box.
+    const splatShapes = ["M93.1 60.0L93.3 60.5L93.4 61.0L90.8 61.4L88.3 61.7L86.2 62.0L84.5 62.2L83.4 62.5L82.8 62.7L83.0 63.1L84.1 63.6L86.1 64.3L89.2 65.3L93.3 66.6L97.8 68.0L96.0 68.2L91.8 67.8L88.3 67.4L85.7 67.1L84.0 67.0L83.1 67.1L82.5 67.3L81.6 67.4L80.5 67.3L79.6 67.3L79.0 67.5L78.7 67.7L78.6 68.0L78.7 68.3L79.1 68.8L79.5 69.4L80.1 70.0L80.7 70.7L81.2 71.4L81.7 72.1L81.5 72.4L80.8 72.4L80.0 72.4L79.2 72.3L78.5 72.2L77.9 72.2L77.5 72.3L77.3 72.6L77.5 73.1L78.0 73.9L78.9 75.1L80.2 76.6L81.8 78.5L83.7 80.7L85.2 82.7L83.9 82.2L82.4 81.4L80.5 80.2L78.8 79.1L77.3 78.1L76.0 77.2L74.8 76.4L73.8 75.8L73.0 75.4L72.5 75.3L72.5 75.7L73.3 77.1L75.0 80.1L78.3 85.2L83.1 92.8L83.1 93.9L77.9 87.1L74.3 82.3L72.1 79.6L70.8 78.1L70.0 77.4L69.5 77.0L68.9 76.6L68.4 76.2L67.9 75.8L67.4 75.3L66.8 74.7L66.3 74.1L65.8 73.6L65.4 73.2L65.1 72.9L64.8 72.7L64.5 72.6L64.3 72.6L64.1 72.6L63.9 72.7L63.7 72.7L63.5 72.7L63.3 72.7L63.1 72.5L62.8 72.3L62.5 72.0L62.3 71.7L62.1 71.4L61.8 71.1L61.7 71.0L61.5 71.0L61.3 71.2L61.2 71.5L61.1 72.0L60.9 72.5L60.8 73.2L60.6 73.9L60.4 74.6L60.2 75.2L60.0 75.6L59.8 76.0L59.5 76.1L59.3 76.1L59.0 76.0L58.8 75.8L58.6 75.5L58.4 75.2L58.2 75.0L58.0 74.7L57.8 74.6L57.6 74.6L57.3 74.7L57.1 74.9L56.8 75.3L56.4 75.7L56.1 76.1L55.8 76.3L55.5 76.2L55.3 76.0L55.1 75.9L54.8 75.9L54.6 75.9L54.3 76.0L53.9 76.2L53.6 76.4L53.3 76.4L52.9 76.7L52.3 77.2L51.6 78.0L51.0 78.7L50.8 78.5L51.0 77.4L51.1 76.5L51.2 75.8L51.0 75.7L50.4 76.1L49.3 77.3L47.5 79.6L45.0 82.8L44.2 83.1L46.2 79.7L47.4 77.4L47.8 76.3L47.5 76.2L46.8 76.6L47.2 75.6L47.1 75.2L46.1 75.9L45.4 76.2L47.1 73.9L48.1 72.4L48.3 71.9L48.0 71.8L47.4 72.0L47.7 71.4L47.9 70.9L47.9 70.5L47.7 70.4L47.3 70.4L46.7 70.6L45.9 70.9L45.2 71.1L45.0 70.9L44.6 70.8L44.0 70.9L43.2 71.1L42.3 71.3L41.1 71.7L39.7 72.1L38.1 72.6L37.3 72.7L38.5 71.6L40.3 70.2L41.9 69.0L43.3 68.0L44.5 67.2L45.5 66.5L46.2 65.9L46.8 65.4L47.2 65.0L47.5 64.7L47.6 64.4L47.7 64.2L47.6 64.0L47.5 63.8L47.4 63.7L47.2 63.5L47.0 63.4L46.7 63.2L46.5 63.1L46.3 62.9L46.1 62.7L45.9 62.6L45.8 62.4L45.6 62.2L45.5 62.0L45.4 61.8L45.3 61.5L45.3 61.3L45.2 61.1L45.1 60.9L45.1 60.7L45.1 60.4L45.1 60.2L45.2 60.0L45.3 59.8L45.5 59.6L45.7 59.4L46.0 59.2L46.3 59.0L46.6 58.8L47.0 58.6L47.4 58.5L47.7 58.3L48.0 58.2L48.2 58.0L48.3 57.9L48.2 57.7L48.1 57.5L47.8 57.2L47.5 56.9L47.0 56.6L46.4 56.3L45.9 55.9L45.3 55.5L44.6 55.0L44.0 54.5L43.4 54.0L42.6 53.5L41.7 52.8L40.6 52.0L39.1 51.1L37.2 49.9L35.6 48.7L38.1 49.5L40.9 50.4L43.1 51.2L44.6 51.7L45.5 51.9L45.9 51.9L45.7 51.5L45.1 50.8L44.1 49.8L42.5 48.5L40.5 46.7L38.1 44.6L35.4 42.2L35.3 41.5L35.5 41.0L36.1 41.0L36.2 40.4L35.6 39.3L34.4 37.7L33.1 35.8L35.6 37.3L39.3 40.2L42.5 42.8L45.0 44.8L46.9 46.3L48.3 47.3L49.1 47.9L49.5 48.0L49.5 47.7L49.1 46.8L48.2 45.2L46.6 42.7L44.6 39.5L46.1 40.9L47.7 42.5L48.6 43.2L49.0 43.4L49.5 43.5L50.0 43.8L50.3 43.8L50.5 43.6L50.6 43.1L50.5 42.4L50.7 42.0L51.2 42.3L51.6 42.5L51.9 42.4L52.1 42.1L52.2 41.7L52.2 41.1L52.3 40.5L52.8 40.9L53.4 41.4L53.9 42.0L54.3 42.5L54.7 42.9L55.1 43.3L55.5 43.7L55.8 43.9L56.1 44.2L56.4 44.3L56.7 44.4L56.9 44.5L57.2 44.5L57.4 44.4L57.6 44.4L57.9 44.3L58.1 44.2L58.3 44.1L58.6 44.0L58.8 43.9L59.0 43.9L59.3 43.9L59.5 43.9L59.8 43.9L60.0 43.9L60.2 44.0L60.5 44.1L60.7 44.2L60.9 44.3L61.2 44.4L61.4 44.4L61.6 44.3L61.9 44.2L62.2 44.0L62.5 43.6L62.8 43.2L63.2 42.6L63.6 42.0L64.0 41.2L64.5 40.4L65.0 39.5L65.6 38.6L66.0 38.2L66.6 37.5L67.2 36.5L68.1 35.1L69.2 32.9L70.7 30.1L72.4 26.8L72.6 27.8L71.6 31.6L70.9 34.6L70.3 36.8L69.7 39.0L69.5 40.3L69.6 40.8L70.1 40.5L70.9 39.7L70.9 40.4L70.6 41.6L70.5 42.4L70.5 43.0L70.7 43.3L71.1 43.2L71.7 42.8L72.8 41.9L74.3 40.4L75.6 39.2L74.1 41.7L72.9 43.9L72.0 45.4L71.5 46.5L71.2 47.2L71.1 47.7L71.1 48.1L71.1 48.3L71.3 48.5L71.6 48.6L72.0 48.6L72.5 48.4L73.3 48.1L74.3 47.5L75.7 46.7L77.6 45.6L79.9 44.1L82.3 42.8L81.1 44.2L80.1 45.4L79.9 46.0L80.7 45.9L82.1 45.4L80.2 47.1L78.8 48.4L78.2 49.1L78.2 49.5L78.6 49.6L79.3 49.6L80.3 49.5L81.6 49.2L82.7 49.1L80.9 50.3L79.1 51.5L77.6 52.5L76.4 53.3L75.7 53.8L75.2 54.3L75.1 54.6L75.1 54.8L75.3 55.0L75.6 55.2L76.0 55.3L76.4 55.5L76.8 55.6L77.3 55.8L77.7 56.0L78.3 56.1L78.9 56.3L79.7 56.4L80.8 56.5L82.3 56.6L84.3 56.7L86.8 56.8L90.0 56.8L93.7 57.0L97.6 57.2L97.4 57.8L95.6 58.4L94.2 59.0L93.3 59.5ZM39.79 90.06A3.99 1.25 123.9 1 1 35.34 96.68A3.99 1.25 123.9 1 1 39.79 90.06ZM31.98 47.00A2.94 1.22 204.9 1 1 26.64 44.53A2.94 1.22 204.9 1 1 31.98 47.00ZM94.41 67.47A4.77 1.95 12.3 1 1 103.73 69.50A4.77 1.95 12.3 1 1 94.41 67.47ZM87.85 100.24A1.85 1.04 55.3 1 1 89.95 103.28A1.85 1.04 55.3 1 1 87.85 100.24ZM31.53 34.17A3.74 1.64 222.2 1 1 25.99 29.15A3.74 1.64 222.2 1 1 31.53 34.17ZM39.45 32.49A1.77 0.93 233.2 1 1 37.34 29.65A1.77 0.93 233.2 1 1 39.45 32.49ZM81.80 43.15A4.00 1.50 322.3 1 1 88.13 38.26A4.00 1.50 322.3 1 1 81.80 43.15ZM99.12 57.23A2.31 1.06 355.9 1 1 103.73 56.90A2.31 1.06 355.9 1 1 99.12 57.23ZM15.47 86.94A0.84 0.65 508.8 1 1 14.04 87.81A0.84 0.65 508.8 1 1 15.47 86.94ZM78.66 16.73A0.88 0.70 293.3 1 1 79.36 15.12A0.88 0.70 293.3 1 1 78.66 16.73ZM90.14 75.17A0.92 0.65 386.7 1 1 91.78 76.00A0.92 0.65 386.7 1 1 90.14 75.17ZM83.96 48.37A0.85 0.65 334.1 1 1 85.49 47.63A0.85 0.65 334.1 1 1 83.96 48.37ZM67.46 10.89A0.41 0.35 278.6 1 1 67.59 10.07A0.41 0.35 278.6 1 1 67.46 10.89ZM78.76 76.60A0.59 0.41 401.5 1 1 79.64 77.38A0.59 0.41 401.5 1 1 78.76 76.60ZM78.66 23.43A0.95 0.56 297.0 1 1 79.52 21.74A0.95 0.56 297.0 1 1 78.66 23.43ZM20.25 65.30A2.02 1.12 172.4 1 1 16.25 65.84A2.02 1.12 172.4 1 1 20.25 65.30ZM81.98 84.20A0.86 0.75 47.8 1 1 83.13 85.47A0.86 0.75 47.8 1 1 81.98 84.20ZM109.22 79.79A0.87 0.58 21.9 1 1 110.82 80.44A0.87 0.58 21.9 1 1 109.22 79.79ZM52.92 114.30A0.93 0.54 457.4 1 1 52.68 116.15A0.93 0.54 457.4 1 1 52.92 114.30ZM39.79 6.91A0.59 0.46 249.2 1 1 39.37 5.80A0.59 0.46 249.2 1 1 39.79 6.91ZM29.07 54.50A1.48 1.07 190.1 1 1 26.16 53.99A1.48 1.07 190.1 1 1 29.07 54.50ZM107.37 90.07A0.86 0.49 392.4 1 1 108.82 90.99A0.86 0.49 392.4 1 1 107.37 90.07ZM60.86 31.97A1.54 0.95 271.8 1 1 60.95 28.90A1.54 0.95 271.8 1 1 60.86 31.97ZM44.78 39.75A0.87 0.84 233.1 1 1 43.74 38.37A0.87 0.84 233.1 1 1 44.78 39.75ZM89.04 95.99A0.82 0.73 411.1 1 1 90.07 97.26A0.82 0.73 411.1 1 1 89.04 95.99ZM78.94 45.74A0.87 0.59 323.0 1 1 80.33 44.70A0.87 0.59 323.0 1 1 78.94 45.74ZM79.76 98.63A1.18 1.09 422.9 1 1 80.84 100.73A1.18 1.09 422.9 1 1 79.76 98.63ZM100.73 70.35A1.49 0.83 14.3 1 1 103.62 71.08A1.49 0.83 14.3 1 1 100.73 70.35ZM107.40 31.59A0.80 0.58 329.1 1 1 108.78 30.76A0.80 0.58 329.1 1 1 107.40 31.59ZM92.84 55.83A1.16 0.70 352.8 1 1 95.13 55.54A1.16 0.70 352.8 1 1 92.84 55.83ZM83.93 97.07A0.39 0.35 417.2 1 1 84.36 97.72A0.39 0.35 417.2 1 1 83.93 97.07ZM85.22 39.29A0.42 0.35 320.6 1 1 85.87 38.76A0.42 0.35 320.6 1 1 85.22 39.29ZM66.72 29.79A1.69 1.04 282.5 1 1 67.45 26.49A1.69 1.04 282.5 1 1 66.72 29.79ZM57.74 17.98A0.81 0.48 266.9 1 1 57.65 16.36A0.81 0.48 266.9 1 1 57.74 17.98ZM87.95 104.04A0.75 0.50 417.6 1 1 88.76 105.32A0.75 0.50 417.6 1 1 87.95 104.04ZM85.43 27.21A1.19 0.92 307.8 1 1 86.89 25.32A1.19 0.92 307.8 1 1 85.43 27.21ZM73.02 25.07A0.98 0.75 290.4 1 1 73.70 23.23A0.98 0.75 290.4 1 1 73.02 25.07ZM83.09 49.13A1.47 1.37 334.8 1 1 85.75 47.88A1.47 1.37 334.8 1 1 83.09 49.13Z", "M102.5 60.0L108.4 60.7L111.2 61.5L104.4 62.0L97.8 62.3L92.4 62.4L88.2 62.5L85.2 62.6L83.1 62.8L82.0 63.0L81.6 63.3L82.2 63.7L84.2 64.4L87.5 65.4L88.3 66.0L90.8 67.0L97.1 69.0L106.2 72.0L99.0 70.8L90.0 68.8L84.4 67.5L81.4 66.9L80.0 66.8L79.6 67.0L79.8 67.4L80.1 67.9L80.6 68.5L81.2 69.0L81.7 69.7L82.3 70.3L82.9 71.0L83.7 71.8L84.5 72.7L85.4 73.7L85.8 74.4L84.4 74.1L83.1 73.8L82.1 73.7L81.1 73.5L80.5 73.5L80.3 73.8L80.4 74.4L80.9 75.2L81.6 76.2L82.5 77.4L82.0 77.5L80.9 77.2L79.9 76.9L79.1 76.7L78.4 76.5L77.8 76.5L77.2 76.5L76.8 76.5L76.4 76.6L76.0 76.7L75.6 76.8L75.3 77.0L75.0 77.1L74.7 77.3L74.4 77.5L74.1 77.7L73.9 77.9L73.7 78.2L73.5 78.6L73.0 78.5L72.4 78.2L71.9 78.0L71.3 77.8L70.9 77.7L70.6 77.7L70.2 77.7L69.9 77.8L69.7 78.0L69.4 78.1L69.1 78.2L68.7 78.2L68.4 78.1L68.0 77.9L67.5 77.6L67.1 77.2L66.6 76.8L66.1 76.3L65.7 75.9L65.3 75.6L65.0 75.3L64.7 75.2L64.5 75.3L64.3 75.6L64.1 75.9L64.0 76.4L63.9 77.0L63.7 77.5L63.5 77.9L63.3 78.3L63.1 78.4L62.8 78.3L62.4 78.0L62.1 77.5L61.8 76.9L61.5 76.1L61.2 75.4L60.9 74.8L60.6 74.4L60.4 74.3L60.2 74.5L60.0 74.9L59.8 74.9L59.5 75.4L59.3 76.6L58.9 78.6L58.4 82.0L57.6 86.9L56.9 89.2L56.9 85.6L56.9 83.2L56.7 82.1L56.4 81.6L56.1 81.3L55.9 80.7L55.8 79.9L55.6 79.2L55.6 78.0L55.6 77.0L55.5 76.1L55.4 75.6L55.3 75.3L55.1 75.2L54.8 75.3L54.5 75.5L54.1 75.7L53.8 75.9L53.4 76.1L53.1 76.3L52.7 76.4L52.3 76.7L51.7 77.2L50.9 78.1L49.9 79.4L49.2 80.0L49.8 78.2L50.3 76.9L50.3 76.2L50.1 76.0L49.7 76.2L49.2 76.3L48.8 76.4L48.2 76.7L47.5 77.2L46.7 77.8L45.7 78.5L44.5 79.4L43.3 80.3L42.6 80.5L42.0 80.6L41.6 80.5L42.9 78.5L44.2 76.5L45.3 74.9L46.1 73.6L46.7 72.7L47.0 72.1L47.1 71.6L47.1 71.3L46.9 71.1L46.7 70.9L46.5 70.8L46.4 70.5L46.3 70.3L46.3 69.9L46.5 69.5L46.7 69.1L46.9 68.6L47.2 68.2L47.4 67.8L47.6 67.4L47.7 67.1L47.7 66.8L47.6 66.7L47.4 66.5L47.1 66.5L46.6 66.4L46.1 66.4L45.6 66.4L45.0 66.4L44.4 66.4L43.9 66.3L43.4 66.2L42.8 66.1L42.4 66.0L41.9 65.9L41.5 65.7L41.5 65.4L41.9 65.0L42.3 64.6L42.7 64.2L43.0 63.9L43.2 63.6L43.3 63.3L43.4 63.0L43.4 62.8L43.4 62.5L43.5 62.2L43.5 62.0L43.6 61.7L43.7 61.5L43.9 61.2L44.0 61.0L44.3 60.7L44.5 60.5L44.7 60.2L44.9 60.0L45.1 59.8L45.3 59.6L45.4 59.3L45.5 59.1L45.6 58.9L45.6 58.7L45.6 58.5L45.5 58.3L45.4 58.0L45.2 57.8L45.1 57.5L44.8 57.3L44.6 57.0L44.4 56.7L44.2 56.4L44.0 56.1L43.8 55.8L43.7 55.5L43.6 55.2L43.6 55.0L43.7 54.7L43.8 54.5L43.9 54.2L44.0 54.0L44.2 53.8L44.3 53.6L44.3 53.3L44.3 53.0L44.2 52.7L44.0 52.3L43.6 51.8L43.2 51.3L42.6 50.6L41.9 49.9L41.2 49.1L40.4 48.3L39.6 47.4L39.7 47.0L40.7 47.3L41.7 47.5L42.5 47.7L43.2 47.8L43.5 47.6L43.5 47.2L43.5 46.8L43.0 46.0L41.7 44.5L39.8 42.3L38.2 40.4L39.9 41.4L41.2 42.0L43.5 43.7L45.3 45.1L46.7 46.0L47.6 46.6L48.2 46.9L48.7 47.1L49.1 47.2L49.5 47.3L49.9 47.3L50.2 47.3L50.4 47.2L50.5 47.0L50.5 46.5L50.3 45.8L50.0 44.8L49.4 43.4L48.9 42.0L49.1 41.7L49.1 41.1L48.9 40.0L48.5 38.6L47.9 36.6L46.5 33.1L44.2 27.2L40.9 18.7L40.0 15.0L43.6 21.6L46.4 26.9L48.8 31.6L50.5 34.8L51.7 37.0L52.7 38.5L53.4 39.6L53.9 40.3L54.4 40.8L54.8 41.2L55.1 41.3L55.4 41.3L55.7 41.1L55.9 40.8L56.1 40.4L56.3 39.9L56.6 39.3L56.8 38.9L57.2 39.3L57.6 39.8L57.9 40.2L58.2 40.5L58.6 40.7L58.9 40.9L59.1 41.0L59.4 41.0L59.7 40.9L60.0 40.9L60.3 40.8L60.6 40.7L60.9 40.7L61.2 40.7L61.4 40.7L61.7 40.8L62.0 40.9L62.3 41.1L62.5 41.3L62.8 41.5L63.0 41.7L63.3 41.7L63.6 41.6L64.0 41.3L64.4 40.7L65.0 39.6L65.7 38.1L66.7 35.8L67.9 32.9L69.4 29.4L70.4 27.9L70.0 30.7L69.6 33.2L69.4 35.1L69.3 36.4L69.3 37.3L69.4 38.0L69.6 38.5L69.7 39.0L69.9 39.5L70.0 40.0L70.1 40.6L70.1 41.2L70.2 41.8L70.2 42.4L70.2 42.9L70.2 43.5L70.3 43.9L70.4 44.2L70.6 44.5L70.8 44.7L71.1 44.8L71.4 44.8L71.7 44.8L72.1 44.8L72.4 44.9L72.8 44.9L73.0 45.1L73.2 45.3L73.4 45.6L73.5 45.9L73.5 46.3L73.5 46.7L73.6 47.0L73.7 47.3L73.9 47.5L74.3 47.5L75.1 47.2L76.3 46.6L78.1 45.5L80.6 44.0L83.5 42.4L82.7 43.5L81.3 45.0L80.4 46.1L80.1 46.7L80.2 47.1L80.5 47.3L81.0 47.4L81.7 47.5L82.4 47.5L83.2 47.5L84.3 47.4L85.8 47.1L88.2 46.4L92.2 45.1L98.8 42.7L107.9 39.5L106.4 41.0L105.0 42.3L100.9 44.7L97.9 46.4L96.2 47.6L93.1 49.3L90.1 50.7L88.3 51.7L87.6 52.4L87.9 52.7L89.2 52.9L91.4 52.8L94.3 52.7L97.5 52.6L99.0 52.9L96.7 53.9L94.4 54.8L92.3 55.6L90.7 56.3L89.5 56.9L88.8 57.4L88.8 57.8L89.4 58.2L90.9 58.6L93.5 59.0L97.4 59.4ZM96.96 45.53A5.04 1.79 338.6 1 1 106.35 41.85A5.04 1.79 338.6 1 1 96.96 45.53ZM72.34 21.41A2.37 1.45 287.7 1 1 73.79 16.88A2.37 1.45 287.7 1 1 72.34 21.41ZM95.77 53.34A3.85 2.15 349.4 1 1 103.33 51.93A3.85 2.15 349.4 1 1 95.77 53.34ZM74.01 78.39A1.40 1.29 412.7 1 1 75.70 80.62A1.40 1.29 412.7 1 1 74.01 78.39ZM106.51 37.10A0.72 0.71 333.8 1 1 107.80 36.47A0.72 0.71 333.8 1 1 106.51 37.10ZM59.21 30.14A1.10 1.04 268.5 1 1 59.15 27.93A1.10 1.04 268.5 1 1 59.21 30.14ZM91.37 75.95A1.40 1.32 386.9 1 1 93.87 77.22A1.40 1.32 386.9 1 1 91.37 75.95ZM75.06 99.76A0.86 0.63 69.2 1 1 75.67 101.37A0.86 0.63 69.2 1 1 75.06 99.76ZM38.27 76.84A0.53 0.50 142.2 1 1 37.43 77.49A0.53 0.50 142.2 1 1 38.27 76.84ZM24.59 16.65A0.65 0.64 230.8 1 1 23.77 15.64A0.65 0.64 230.8 1 1 24.59 16.65ZM99.99 61.07A0.86 0.63 361.5 1 1 101.71 61.12A0.86 0.63 361.5 1 1 99.99 61.07ZM55.19 100.25A1.29 0.73 96.8 1 1 54.88 102.82A1.29 0.73 96.8 1 1 55.19 100.25ZM107.24 38.51A0.51 0.43 335.5 1 1 108.16 38.09A0.51 0.43 335.5 1 1 107.24 38.51ZM37.19 38.34A1.27 0.82 223.5 1 1 35.36 36.59A1.27 0.82 223.5 1 1 37.19 38.34ZM15.96 33.62A0.45 0.35 210.9 1 1 15.19 33.16A0.45 0.35 210.9 1 1 15.96 33.62ZM82.83 90.02A0.38 0.36 52.7 1 1 83.29 90.62A0.38 0.36 52.7 1 1 82.83 90.02ZM105.43 56.75A0.44 0.35 355.9 1 1 106.31 56.69A0.44 0.35 355.9 1 1 105.43 56.75ZM71.36 23.80A0.91 0.83 287.4 1 1 71.90 22.07A0.91 0.83 287.4 1 1 71.36 23.80ZM34.17 10.83A0.75 0.69 242.3 1 1 33.48 9.51A0.75 0.69 242.3 1 1 34.17 10.83ZM105.85 32.25A0.82 0.52 328.8 1 1 107.25 31.40A0.82 0.52 328.8 1 1 105.85 32.25ZM74.84 5.12A0.99 0.68 285.1 1 1 75.35 3.22A0.99 0.68 285.1 1 1 74.84 5.12ZM94.86 34.91A1.23 1.08 324.3 1 1 96.86 33.47A1.23 1.08 324.3 1 1 94.86 34.91ZM98.37 51.70A1.07 0.68 347.8 1 1 100.47 51.24A1.07 0.68 347.8 1 1 98.37 51.70ZM49.38 23.10A1.59 1.26 253.9 1 1 48.50 20.03A1.59 1.26 253.9 1 1 49.38 23.10ZM33.47 19.06A1.08 0.91 237.1 1 1 32.30 17.25A1.08 0.91 237.1 1 1 33.47 19.06ZM41.34 6.54A0.60 0.59 250.8 1 1 40.95 5.41A0.60 0.59 250.8 1 1 41.34 6.54ZM93.23 92.77A1.49 0.98 404.6 1 1 95.35 94.86A1.49 0.98 404.6 1 1 93.23 92.77ZM114.74 65.92A1.01 0.68 6.2 1 1 116.74 66.13A1.01 0.68 6.2 1 1 114.74 65.92ZM78.74 43.41A2.27 1.40 318.5 1 1 82.14 40.40A2.27 1.40 318.5 1 1 78.74 43.41ZM86.76 48.99A1.46 1.32 337.6 1 1 89.47 47.88A1.46 1.32 337.6 1 1 86.76 48.99ZM42.40 26.44A0.80 0.55 242.3 1 1 41.66 25.02A0.80 0.55 242.3 1 1 42.40 26.44ZM81.07 75.00A0.49 0.36 395.4 1 1 81.87 75.57A0.49 0.36 395.4 1 1 81.07 75.00ZM33.51 19.16A0.95 0.62 237.0 1 1 32.47 17.57A0.95 0.62 237.0 1 1 33.51 19.16ZM28.66 66.74A0.93 0.91 527.9 1 1 26.85 67.13A0.93 0.91 527.9 1 1 28.66 66.74ZM106.06 45.36A1.14 0.86 342.4 1 1 108.24 44.66A1.14 0.86 342.4 1 1 106.06 45.36ZM81.20 14.99A1.00 0.90 295.2 1 1 82.05 13.19A1.00 0.90 295.2 1 1 81.20 14.99ZM65.76 27.08A0.51 0.35 279.9 1 1 65.94 26.08A0.51 0.35 279.9 1 1 65.76 27.08ZM32.36 90.78A0.86 0.63 131.9 1 1 31.21 92.06A0.86 0.63 131.9 1 1 32.36 90.78ZM43.83 102.06A0.96 0.67 111.0 1 1 43.14 103.85A0.96 0.67 111.0 1 1 43.83 102.06ZM105.49 83.80A0.67 0.44 27.6 1 1 106.67 84.42A0.67 0.44 27.6 1 1 105.49 83.80ZM39.47 30.44A1.29 1.20 235.2 1 1 38.00 28.32A1.29 1.20 235.2 1 1 39.47 30.44ZM88.34 81.81A1.45 0.87 397.6 1 1 90.65 83.58A1.45 0.87 397.6 1 1 88.34 81.81Z", "M73.0 60.0L72.4 60.2L71.9 60.4L71.6 60.5L71.5 60.7L71.6 60.9L71.8 61.1L72.2 61.3L72.7 61.5L73.2 61.8L73.7 62.1L74.2 62.4L74.7 62.7L75.0 63.0L75.3 63.2L75.4 63.5L75.4 63.8L75.3 64.0L75.1 64.2L74.9 64.4L74.7 64.5L74.5 64.7L74.3 64.9L74.1 65.1L74.0 65.2L73.9 65.4L73.7 65.6L73.6 65.8L73.5 66.0L73.3 66.2L73.2 66.3L73.0 66.5L72.8 66.7L72.7 66.8L72.7 67.1L72.7 67.3L72.9 67.7L73.4 68.3L74.2 69.1L75.5 70.2L77.4 71.8L79.9 74.0L82.8 76.6L86.0 79.5L82.5 77.4L78.8 75.0L76.2 73.3L74.4 72.2L73.3 71.6L72.6 71.4L72.2 71.3L71.2 70.7L70.5 70.4L70.1 70.3L70.0 70.5L70.2 71.0L70.5 71.6L69.6 71.0L68.8 70.4L68.3 70.1L68.0 70.1L67.9 70.3L68.0 70.7L68.1 71.2L68.2 71.7L68.3 72.2L68.4 72.7L68.3 73.1L68.2 73.3L68.0 73.5L67.8 73.5L67.5 73.5L67.3 73.6L67.1 73.7L67.1 74.2L67.3 75.1L67.7 76.7L68.5 79.1L68.8 80.7L67.4 78.1L66.3 76.1L65.5 74.7L65.0 74.0L64.7 73.8L64.5 73.8L64.3 74.0L64.2 74.2L64.0 74.5L63.9 74.8L63.7 75.2L63.6 75.7L63.5 76.7L63.6 78.4L63.9 81.5L64.3 85.8L63.6 83.7L62.7 79.9L62.1 77.7L61.7 76.6L61.5 76.3L61.2 75.8L60.9 75.5L60.7 75.5L60.5 75.7L60.2 76.3L60.0 77.1L59.7 78.5L59.4 80.4L59.0 83.0L58.4 86.2L57.8 90.0L57.2 91.0L57.1 87.7L57.0 85.1L57.0 82.4L56.9 80.4L56.9 78.9L56.7 78.0L56.6 77.5L56.3 77.2L56.1 77.1L55.8 77.0L55.6 77.1L55.3 77.1L55.0 77.0L54.8 76.9L54.6 76.7L54.4 76.4L54.2 76.1L54.1 75.7L54.0 75.2L53.9 74.8L53.9 74.3L53.8 74.0L53.6 73.7L53.5 73.6L53.3 73.5L53.0 73.5L52.7 73.6L52.3 73.8L51.9 74.0L51.5 74.2L51.1 74.4L50.7 74.6L50.3 74.7L49.9 74.8L49.5 74.9L49.0 75.1L48.4 75.5L47.6 76.1L46.5 76.9L45.2 78.0L45.4 77.3L46.1 75.9L46.6 74.9L46.8 74.3L46.7 73.9L46.5 73.7L46.2 73.6L45.9 73.5L45.5 73.4L45.2 73.3L45.0 73.1L44.8 72.9L44.6 72.6L44.5 72.3L44.5 72.0L44.4 71.7L44.2 71.5L43.9 71.3L43.5 71.2L42.9 71.3L42.0 71.5L40.9 71.8L39.9 72.0L39.1 72.1L38.0 72.3L37.1 72.3L38.7 71.1L40.2 69.9L41.4 68.9L42.4 68.2L43.0 67.6L43.4 67.1L43.6 66.7L43.7 66.4L43.7 66.1L43.6 65.9L43.5 65.6L43.3 65.4L43.0 65.2L42.8 65.0L42.5 64.8L42.3 64.6L42.2 64.4L42.1 64.1L42.0 63.8L42.0 63.5L42.1 63.3L42.1 63.0L42.2 62.7L42.2 62.4L42.2 62.1L42.1 61.9L42.0 61.6L41.9 61.4L41.7 61.1L41.5 60.8L41.3 60.6L41.1 60.3L41.0 60.0L40.9 59.7L40.9 59.4L40.9 59.1L41.0 58.9L41.0 58.6L40.9 58.3L40.6 58.0L40.0 57.6L38.8 57.1L36.8 56.5L33.3 55.6L27.8 54.2L19.7 52.1L8.6 49.1L-1.6 45.9L9.9 47.8L20.5 49.7L28.1 51.2L33.3 52.2L36.7 52.8L38.9 53.1L40.3 53.3L41.3 53.3L41.9 53.2L42.1 53.0L42.0 52.6L41.4 52.1L40.4 51.3L39.0 50.3L37.3 49.1L36.9 48.4L36.4 47.8L35.0 46.6L32.3 44.5L27.8 41.4L21.8 37.2L17.8 33.9L19.8 34.3L27.1 38.3L33.0 41.6L37.2 43.9L40.0 45.5L41.8 46.4L42.9 46.8L43.5 46.9L43.7 46.6L43.6 46.1L43.2 45.3L42.4 44.1L41.2 42.6L39.6 40.5L37.8 38.1L35.5 35.2L33.0 31.7L30.8 28.5L27.8 24.2L29.7 25.3L34.4 29.8L39.1 34.6L43.0 38.7L45.7 41.5L47.5 43.4L48.7 44.5L49.5 45.1L50.1 45.4L50.5 45.6L50.8 45.6L51.1 45.6L51.3 45.5L51.6 45.5L51.8 45.4L52.0 45.2L52.2 44.9L52.2 44.4L52.1 43.7L52.0 42.6L51.6 41.2L51.6 40.3L51.5 39.1L51.1 37.3L50.5 34.8L50.0 32.0L50.9 33.3L52.0 35.3L52.9 36.9L53.6 38.1L54.1 38.8L54.6 39.2L55.0 39.5L55.4 39.6L55.7 39.8L56.2 40.6L56.7 41.6L57.1 42.5L57.5 43.2L57.8 43.6L58.0 43.7L58.3 43.4L58.5 42.8L58.6 41.8L58.8 40.7L59.1 40.0L59.4 40.7L59.7 41.2L60.0 41.6L60.3 41.9L60.5 42.0L60.8 42.0L61.1 42.0L61.4 41.8L61.7 41.6L62.0 41.3L62.3 40.9L62.7 40.4L63.1 39.7L63.5 38.9L64.0 37.9L64.6 36.7L65.2 35.3L66.0 33.9L66.3 34.0L66.2 36.0L66.1 38.0L65.9 39.8L65.8 41.2L65.8 42.3L65.8 43.0L65.9 43.5L66.1 43.8L66.4 43.8L66.7 43.6L67.1 43.3L67.6 42.9L68.2 42.4L68.8 41.7L69.5 41.1L70.2 40.4L70.8 39.9L71.1 40.2L71.4 40.3L71.7 40.4L71.3 41.7L70.8 43.1L70.4 44.3L70.1 45.1L70.1 45.7L70.2 46.0L70.4 46.1L70.8 46.0L71.4 45.8L71.9 45.5L72.6 45.2L73.2 44.8L73.9 44.6L74.5 44.4L74.4 44.9L74.1 45.7L73.6 46.6L73.2 47.4L72.8 48.1L72.6 48.7L72.5 49.1L72.5 49.4L72.7 49.6L73.1 49.6L73.6 49.5L74.0 49.5L74.0 49.9L74.0 50.2L74.0 50.4L74.2 50.7L74.4 50.8L74.6 51.0L74.9 51.1L75.0 51.3L74.5 51.9L73.8 52.6L73.3 53.1L72.8 53.6L72.6 54.0L72.5 54.2L72.5 54.4L72.7 54.6L72.9 54.7L73.2 54.8L73.5 54.9L73.8 55.0L74.1 55.2L74.3 55.4L74.4 55.6L74.5 55.8L74.5 56.0L74.5 56.2L74.5 56.5L74.5 56.7L74.6 56.9L74.7 57.1L74.9 57.3L75.2 57.5L75.5 57.7L75.9 57.8L76.3 58.0L76.7 58.2L77.0 58.5L77.1 58.7L76.3 59.0L75.5 59.3L74.6 59.6L73.7 59.8ZM57.11 94.26A6.00 2.02 94.8 1 1 56.11 106.23A6.00 2.02 94.8 1 1 57.11 94.26ZM34.12 30.91A2.73 0.95 228.3 1 1 30.49 26.83A2.73 0.95 228.3 1 1 34.12 30.91ZM25.00 37.98A4.69 2.05 212.2 1 1 17.06 32.99A4.69 2.05 212.2 1 1 25.00 37.98ZM72.21 88.34A2.54 1.06 66.7 1 1 74.22 93.01A2.54 1.06 66.7 1 1 72.21 88.34ZM64.64 88.69A2.69 1.60 80.8 1 1 65.50 94.00A2.69 1.60 80.8 1 1 64.64 88.69ZM23.37 51.13A1.34 1.05 193.6 1 1 20.76 50.49A1.34 1.05 193.6 1 1 23.37 51.13ZM98.40 49.03A1.18 1.04 344.1 1 1 100.66 48.38A1.18 1.04 344.1 1 1 98.40 49.03ZM104.21 36.33A0.82 0.81 331.8 1 1 105.65 35.56A0.82 0.81 331.8 1 1 104.21 36.33ZM33.82 44.01A0.88 0.62 211.4 1 1 32.31 43.09A0.88 0.62 211.4 1 1 33.82 44.01ZM22.20 61.45A1.05 1.05 177.8 1 1 20.11 61.53A1.05 1.05 177.8 1 1 22.20 61.45ZM44.26 45.44A2.75 1.64 222.8 1 1 40.22 41.70A2.75 1.64 222.8 1 1 44.26 45.44ZM31.51 33.05A0.72 0.57 223.4 1 1 30.47 32.06A0.72 0.57 223.4 1 1 31.51 33.05ZM35.34 83.66A0.63 0.50 136.2 1 1 34.43 84.53A0.63 0.50 136.2 1 1 35.34 83.66ZM41.56 96.24A1.20 0.92 117.0 1 1 40.46 98.39A1.20 0.92 117.0 1 1 41.56 96.24ZM31.17 28.90A1.23 0.95 227.2 1 1 29.49 27.09A1.23 0.95 227.2 1 1 31.17 28.90ZM33.89 34.56A0.92 0.66 224.3 1 1 32.57 33.27A0.92 0.66 224.3 1 1 33.89 34.56ZM19.46 82.12A0.72 0.61 151.4 1 1 18.19 82.81A0.72 0.61 151.4 1 1 19.46 82.12ZM52.56 14.13A0.47 0.35 260.8 1 1 52.41 13.20A0.47 0.35 260.8 1 1 52.56 14.13ZM86.60 40.07A2.05 1.26 323.2 1 1 89.89 37.61A2.05 1.26 323.2 1 1 86.60 40.07ZM69.21 96.77A0.65 0.39 75.9 1 1 69.52 98.03A0.65 0.39 75.9 1 1 69.21 96.77ZM79.79 19.92A1.24 0.85 296.3 1 1 80.89 17.70A1.24 0.85 296.3 1 1 79.79 19.92ZM45.39 100.07A0.39 0.35 110.0 1 1 45.12 100.80A0.39 0.35 110.0 1 1 45.39 100.07ZM83.30 66.66A0.81 0.48 16.0 1 1 84.86 67.11A0.81 0.48 16.0 1 1 83.30 66.66ZM82.08 50.78A2.18 1.42 337.3 1 1 86.11 49.10A2.18 1.42 337.3 1 1 82.08 50.78ZM99.87 47.71A1.01 0.98 342.9 1 1 101.80 47.12A1.01 0.98 342.9 1 1 99.87 47.71ZM13.01 56.65A0.56 0.35 184.1 1 1 11.90 56.57A0.56 0.35 184.1 1 1 13.01 56.65ZM89.61 71.97A1.55 0.93 22.0 1 1 92.47 73.13A1.55 0.93 22.0 1 1 89.61 71.97ZM38.19 43.60A0.95 0.64 216.9 1 1 36.67 42.46A0.95 0.64 216.9 1 1 38.19 43.60ZM33.20 81.13A0.92 0.72 141.7 1 1 31.75 82.27A0.92 0.72 141.7 1 1 33.20 81.13ZM61.89 3.68A0.67 0.42 271.9 1 1 61.94 2.34A0.67 0.42 271.9 1 1 61.89 3.68ZM37.10 20.72A1.31 0.85 239.8 1 1 35.78 18.45A1.31 0.85 239.8 1 1 37.10 20.72ZM60.39 113.90A0.38 0.35 89.6 1 1 60.40 114.65A0.38 0.35 89.6 1 1 60.39 113.90ZM94.11 40.29A1.08 0.69 330.0 1 1 95.99 39.20A1.08 0.69 330.0 1 1 94.11 40.29ZM32.68 46.18A0.80 0.54 206.8 1 1 31.26 45.46A0.80 0.54 206.8 1 1 32.68 46.18ZM11.04 33.32A0.55 0.35 208.6 1 1 10.07 32.79A0.55 0.35 208.6 1 1 11.04 33.32ZM92.97 19.85A0.73 0.60 309.4 1 1 93.90 18.72A0.73 0.60 309.4 1 1 92.97 19.85Z", "M76.0 60.0L76.3 60.2L76.6 60.5L77.0 60.8L77.3 61.0L77.7 61.3L78.0 61.6L78.3 61.9L78.6 62.2L78.8 62.5L78.9 62.9L79.0 63.2L79.1 63.5L79.1 63.8L79.1 64.1L79.1 64.4L79.0 64.6L78.9 64.9L78.8 65.2L78.7 65.5L78.5 65.7L78.3 65.9L78.1 66.2L77.9 66.4L77.7 66.6L77.5 66.9L77.3 67.1L77.1 67.3L77.0 67.6L76.9 67.8L76.8 68.1L76.7 68.3L76.6 68.6L76.4 68.8L76.2 69.0L76.0 69.2L75.7 69.4L75.5 69.6L75.2 69.7L74.9 69.8L74.6 70.0L74.4 70.2L74.3 70.4L74.3 70.7L74.4 71.1L74.6 71.7L75.1 72.4L75.9 73.5L77.6 75.4L80.9 78.8L86.7 84.7L95.2 93.6L91.4 90.9L83.8 84.1L79.3 80.2L77.0 78.4L75.9 77.7L75.4 77.6L75.2 78.0L75.4 78.7L75.8 79.8L76.6 81.5L77.7 83.7L79.1 86.4L80.5 89.1L79.1 88.0L76.9 85.6L74.9 83.4L73.4 81.6L72.1 80.3L71.1 79.2L70.3 78.5L69.6 77.9L69.0 77.4L68.5 76.9L68.0 76.5L67.5 76.2L67.1 75.9L66.7 75.7L66.4 75.6L66.2 75.8L66.1 76.3L66.2 77.3L66.5 79.1L67.2 82.1L68.0 86.0L69.6 92.9L71.7 102.2L68.9 94.4L66.8 87.9L65.6 84.8L65.0 83.4L64.5 82.6L63.8 80.7L63.2 79.0L62.7 77.6L62.2 76.6L61.9 75.9L61.6 75.5L61.4 75.3L61.1 75.3L60.9 75.5L60.7 75.9L60.5 76.3L60.3 76.9L60.0 77.5L59.7 78.0L59.4 78.6L59.1 79.0L58.8 79.4L58.5 79.8L58.2 80.1L57.8 80.5L57.5 81.0L57.1 81.8L56.5 83.0L55.9 84.7L55.1 87.1L54.5 87.7L54.6 85.4L54.5 83.9L54.3 83.5L53.7 84.3L53.1 85.0L52.7 85.0L52.8 83.4L53.2 80.8L53.5 79.0L53.6 77.9L53.5 77.2L53.3 77.1L52.9 77.2L52.3 77.9L51.4 79.4L49.8 82.1L47.1 86.7L43.3 93.5L42.7 93.4L45.8 86.4L47.9 81.8L49.0 79.1L49.3 77.9L49.3 77.3L49.3 76.7L49.3 76.2L49.1 76.1L48.6 76.1L48.0 76.5L47.2 77.1L46.2 77.9L45.1 78.6L45.5 77.7L45.8 76.7L46.1 75.9L46.4 75.1L46.5 74.5L46.7 73.9L46.8 73.4L46.9 72.9L47.0 72.4L47.1 72.0L47.2 71.5L47.3 71.1L47.4 70.7L47.5 70.3L47.5 70.0L47.5 69.7L47.4 69.4L47.3 69.2L47.1 69.1L46.9 68.9L46.6 68.9L46.2 68.8L45.7 68.8L45.1 68.9L44.5 68.9L43.8 69.0L43.7 68.8L43.8 68.4L44.0 68.0L44.0 67.7L44.0 67.4L43.9 67.2L43.7 67.0L43.5 66.8L43.3 66.6L43.6 66.2L44.1 65.7L44.6 65.2L45.1 64.8L45.5 64.5L45.8 64.2L46.0 63.9L46.0 63.6L46.0 63.4L45.9 63.2L45.7 63.0L45.4 62.9L45.1 62.7L44.8 62.5L44.6 62.3L44.4 62.1L44.4 61.9L44.4 61.6L44.6 61.4L44.9 61.1L45.3 60.9L45.7 60.6L46.2 60.4L46.6 60.2L47.0 60.0L47.2 59.8L47.3 59.6L47.1 59.4L46.6 59.2L45.5 58.9L43.6 58.5L40.6 58.0L37.4 57.3L38.5 57.1L38.7 56.8L38.8 56.5L41.3 56.6L43.1 56.7L44.3 56.7L45.0 56.6L45.4 56.4L45.4 56.2L45.2 55.9L44.7 55.5L44.6 55.3L44.8 55.1L44.6 54.7L44.1 54.3L43.3 53.7L42.1 53.0L40.6 52.1L38.8 50.9L36.7 49.6L34.7 48.3L35.7 48.3L38.2 49.1L41.0 50.1L43.3 51.0L45.2 51.8L46.6 52.3L47.6 52.6L48.2 52.7L48.5 52.6L48.5 52.4L48.3 52.0L47.9 51.5L47.5 50.9L47.0 50.3L46.5 49.6L46.1 48.9L45.7 48.2L45.4 47.6L45.1 47.0L44.9 46.4L44.8 45.9L45.4 46.0L46.2 46.4L47.0 46.8L47.6 47.1L48.2 47.3L48.7 47.4L49.1 47.6L49.6 47.8L50.0 47.9L50.4 47.9L50.6 47.9L50.9 47.8L51.1 47.7L51.3 47.6L51.5 47.5L51.7 47.4L51.8 47.2L51.9 47.0L52.0 46.6L52.0 46.2L51.9 45.5L51.8 44.7L51.6 43.9L52.0 43.9L52.4 44.3L52.9 44.8L53.5 45.4L53.9 45.8L54.3 46.0L54.5 46.0L54.7 45.9L54.8 45.5L54.9 45.1L55.0 44.5L55.0 43.9L55.1 43.1L55.1 42.3L55.3 41.8L55.5 41.5L55.7 41.2L56.0 40.9L56.3 41.1L56.6 41.5L57.0 41.8L57.3 42.0L57.6 42.1L57.8 42.1L58.1 41.9L58.3 41.6L58.6 41.8L59.0 42.6L59.3 43.3L59.5 43.9L59.8 44.3L60.0 44.6L60.2 44.8L60.5 44.9L60.7 45.0L60.9 45.0L61.1 45.0L61.3 45.1L61.6 45.1L61.8 45.2L62.0 45.4L62.2 45.5L62.4 45.7L62.6 45.8L62.8 45.8L63.1 45.6L63.3 45.3L63.7 44.8L64.2 43.8L64.9 42.4L65.8 40.3L67.0 37.3L68.7 33.3L70.8 28.5L72.4 25.4L71.2 30.1L70.0 34.6L69.0 38.0L68.4 40.4L68.0 42.0L67.9 43.1L67.9 43.6L68.1 43.8L68.5 43.7L69.0 43.3L69.6 42.8L70.3 42.2L70.8 42.0L70.7 42.6L70.7 43.3L70.7 43.8L70.7 44.3L70.7 44.8L70.7 45.3L70.7 45.7L70.7 46.1L70.7 46.5L70.8 46.9L70.8 47.3L70.8 47.6L70.8 48.0L70.9 48.2L71.1 48.4L71.3 48.6L71.5 48.7L71.7 48.8L72.0 48.9L72.3 49.0L72.5 49.0L72.8 49.2L73.0 49.3L73.2 49.5L73.4 49.6L73.5 49.9L73.6 50.1L73.8 50.3L73.9 50.5L74.0 50.8L74.1 51.0L74.3 51.2L74.5 51.4L74.7 51.5L75.1 51.6L75.6 51.6L76.5 51.5L77.8 51.1L79.8 50.5L80.0 50.7L77.8 52.1L76.2 53.1L75.2 53.8L74.6 54.3L74.3 54.6L74.2 54.9L74.3 55.1L74.6 55.2L75.0 55.4L75.5 55.5L76.0 55.6L76.6 55.7L77.1 55.8L77.5 56.0L77.9 56.2L78.1 56.4L78.2 56.7L78.1 57.0L78.0 57.3L77.7 57.6L77.3 57.9L76.9 58.2L76.6 58.5L76.2 58.8L76.0 59.0L75.8 59.3L75.8 59.5L75.8 59.8ZM73.87 20.97A3.17 1.42 289.6 1 1 76.00 14.99A3.17 1.42 289.6 1 1 73.87 20.97ZM41.69 95.92A3.41 1.69 117.0 1 1 38.60 101.99A3.41 1.69 117.0 1 1 41.69 95.92ZM26.12 44.13A2.73 1.40 205.1 1 1 21.18 41.82A2.73 1.40 205.1 1 1 26.12 44.13ZM53.48 94.07A2.86 1.11 100.8 1 1 52.41 99.69A2.86 1.11 100.8 1 1 53.48 94.07ZM20.19 67.20A0.36 0.35 169.7 1 1 19.49 67.33A0.36 0.35 169.7 1 1 20.19 67.20ZM44.14 19.70A0.47 0.36 -111.5 1 1 43.80 18.82A0.47 0.36 -111.5 1 1 44.14 19.70ZM40.62 57.18A2.50 1.51 188.3 1 1 35.66 56.46A2.50 1.51 188.3 1 1 40.62 57.18ZM87.27 89.85A1.00 0.61 47.6 1 1 88.62 91.33A1.00 0.61 47.6 1 1 87.27 89.85ZM99.22 100.52A0.38 0.35 45.9 1 1 99.75 101.07A0.38 0.35 45.9 1 1 99.22 100.52ZM31.30 104.70A0.72 0.53 122.7 1 1 30.52 105.91A0.72 0.53 122.7 1 1 31.30 104.70ZM63.72 37.93A1.75 1.51 279.6 1 1 64.30 34.47A1.75 1.51 279.6 1 1 63.72 37.93ZM70.86 108.90A0.59 0.35 77.5 1 1 71.12 110.06A0.59 0.35 77.5 1 1 70.86 108.90ZM82.51 47.17A1.21 0.96 -29.7 1 1 84.62 45.97A1.21 0.96 -29.7 1 1 82.51 47.17ZM45.63 75.01A1.14 0.79 133.8 1 1 44.06 76.65A1.14 0.79 133.8 1 1 45.63 75.01ZM100.99 36.95A0.65 0.61 -29.3 1 1 102.13 36.32A0.65 0.61 -29.3 1 1 100.99 36.95ZM70.49 106.92A1.46 0.97 77.4 1 1 71.12 109.76A1.46 0.97 77.4 1 1 70.49 106.92ZM100.32 45.25A0.90 0.52 -20.1 1 1 102.01 44.63A0.90 0.52 -20.1 1 1 100.32 45.25ZM58.95 112.09A1.09 0.73 91.2 1 1 58.91 114.28A1.09 0.73 91.2 1 1 58.95 112.09ZM85.08 61.55A1.69 1.31 3.5 1 1 88.45 61.75A1.69 1.31 3.5 1 1 85.08 61.55ZM73.51 81.49A1.55 1.35 57.8 1 1 75.16 84.11A1.55 1.35 57.8 1 1 73.51 81.49ZM31.04 90.08A0.85 0.57 133.9 1 1 29.85 91.31A0.85 0.57 133.9 1 1 31.04 90.08ZM77.37 90.22A1.46 1.27 60.1 1 1 78.82 92.75A1.46 1.27 60.1 1 1 77.37 90.22ZM81.66 63.03A0.68 0.39 8.0 1 1 83.01 63.22A0.68 0.39 8.0 1 1 81.66 63.03ZM75.77 12.57A1.02 0.91 288.4 1 1 76.42 10.63A1.02 0.91 288.4 1 1 75.77 12.57ZM58.03 98.18A1.45 0.83 93.0 1 1 57.88 101.08A1.45 0.83 93.0 1 1 58.03 98.18ZM83.66 55.25A1.81 1.18 348.7 1 1 87.22 54.54A1.81 1.18 348.7 1 1 83.66 55.25ZM22.24 25.48A0.72 0.41 222.4 1 1 21.18 24.51A0.72 0.41 222.4 1 1 22.24 25.48ZM58.48 13.34A0.56 0.48 -91.9 1 1 58.44 12.22A0.56 0.48 -91.9 1 1 58.48 13.34ZM84.15 24.99A1.92 1.12 -55.4 1 1 86.33 21.83A1.92 1.12 -55.4 1 1 84.15 24.99ZM68.43 29.94A0.79 0.78 -74.3 1 1 68.85 28.42A0.79 0.78 -74.3 1 1 68.43 29.94ZM41.60 95.46A1.36 0.91 117.4 1 1 40.34 97.88A1.36 0.91 117.4 1 1 41.60 95.46ZM40.74 78.39A0.74 0.42 136.3 1 1 39.66 79.41A0.74 0.42 136.3 1 1 40.74 78.39ZM97.73 39.25A0.56 0.52 331.2 1 1 98.71 38.71A0.56 0.52 331.2 1 1 97.73 39.25ZM87.18 62.69A2.46 1.43 5.6 1 1 92.07 63.17A2.46 1.43 5.6 1 1 87.18 62.69ZM77.34 83.47A1.18 0.67 53.5 1 1 78.74 85.37A1.18 0.67 53.5 1 1 77.34 83.47ZM76.70 96.53A1.40 1.16 65.4 1 1 77.86 99.08A1.40 1.16 65.4 1 1 76.70 96.53ZM68.42 34.39A0.47 0.45 -71.8 1 1 68.71 33.51A0.47 0.45 -71.8 1 1 68.42 34.39ZM91.75 107.50A0.60 0.35 56.2 1 1 92.41 108.49A0.60 0.35 56.2 1 1 91.75 107.50ZM54.88 16.60A1.79 1.05 263.3 1 1 54.47 13.05A1.79 1.05 263.3 1 1 54.88 16.60ZM17.51 43.19A1.19 0.82 201.6 1 1 15.30 42.31A1.19 0.82 201.6 1 1 17.51 43.19ZM74.38 80.91A1.93 1.39 55.5 1 1 76.57 84.09A1.93 1.39 55.5 1 1 74.38 80.91ZM48.87 87.65A1.19 0.77 111.9 1 1 47.98 89.87A1.19 0.77 111.9 1 1 48.87 87.65ZM43.45 90.83A0.76 0.74 118.2 1 1 42.73 92.16A0.76 0.74 118.2 1 1 43.45 90.83ZM115.76 66.69A0.39 0.35 6.8 1 1 116.54 66.78A0.39 0.35 6.8 1 1 115.76 66.69ZM72.81 34.23A1.35 0.98 296.4 1 1 74.01 31.81A1.35 0.98 296.4 1 1 72.81 34.23ZM79.92 106.11A1.44 0.92 66.6 1 1 81.06 108.75A1.44 0.92 66.6 1 1 79.92 106.11ZM90.90 47.11A2.00 1.20 337.4 1 1 94.59 45.58A2.00 1.20 337.4 1 1 90.90 47.11ZM36.79 64.39A1.97 1.14 169.3 1 1 32.91 65.13A1.97 1.14 169.3 1 1 36.79 64.39ZM82.28 23.27A0.53 0.35 -58.8 1 1 82.82 22.37A0.53 0.35 -58.8 1 1 82.28 23.27Z", "M83.5 60.0L83.6 60.4L83.9 60.7L84.6 61.1L85.7 61.5L87.3 62.0L89.4 62.6L91.6 63.3L91.9 63.8L91.7 64.3L90.4 64.6L88.9 64.8L87.7 65.0L86.8 65.3L85.3 65.4L83.3 65.3L81.6 65.3L80.4 65.3L79.5 65.4L79.1 65.6L79.2 65.9L79.7 66.4L80.9 67.1L82.5 68.1L84.3 69.1L83.8 69.3L83.3 69.5L81.8 69.3L80.1 69.0L78.7 68.7L77.5 68.4L76.5 68.2L75.7 68.1L75.0 68.1L74.6 68.1L74.3 68.3L74.3 68.5L74.5 68.9L74.9 69.5L75.5 70.2L76.2 71.0L76.8 71.8L76.4 71.9L76.0 72.0L75.6 72.0L75.2 72.1L74.8 72.1L74.3 72.1L73.9 72.1L73.3 72.0L72.8 71.9L72.3 71.8L71.8 71.6L71.4 71.5L71.0 71.5L70.7 71.5L70.4 71.6L70.2 71.7L70.1 72.0L70.1 72.3L70.1 72.6L70.0 73.0L70.0 73.4L70.0 73.7L69.9 74.0L69.7 74.3L69.5 74.4L69.3 74.5L69.0 74.6L68.7 74.6L68.4 74.5L68.1 74.5L67.7 74.4L67.4 74.3L67.1 74.3L66.9 74.3L66.6 74.4L66.4 74.5L66.3 74.7L66.1 75.0L66.0 75.3L65.9 75.8L65.8 76.3L65.6 76.4L65.3 76.3L65.0 76.2L64.7 76.2L64.5 76.3L64.2 76.3L64.0 76.4L63.7 76.4L63.5 76.5L63.2 76.4L63.0 76.4L62.7 76.3L62.4 76.1L62.2 75.9L61.9 75.7L61.6 75.5L61.4 75.2L61.1 75.0L60.9 74.9L60.7 74.9L60.4 75.0L60.2 75.3L60.0 75.8L59.8 76.6L59.5 77.6L59.2 78.3L58.9 78.4L58.6 78.9L58.2 79.8L57.8 80.6L57.5 80.9L57.0 81.9L56.5 83.5L55.7 85.8L54.8 88.6L54.1 89.9L53.8 89.4L53.4 89.0L53.5 86.5L53.8 83.8L54.0 81.9L54.0 80.7L53.8 80.2L53.4 80.4L52.8 81.0L52.1 82.0L51.7 82.0L51.7 81.0L51.7 80.2L51.7 79.5L51.5 79.0L51.4 78.6L51.4 77.9L51.4 77.1L51.5 76.4L51.5 75.8L51.5 75.2L51.5 74.7L51.5 74.3L51.3 74.0L51.2 73.8L51.0 73.7L50.8 73.6L50.5 73.5L50.2 73.5L49.9 73.4L49.7 73.4L49.4 73.3L49.2 73.2L49.0 73.0L48.8 72.8L48.6 72.6L48.5 72.4L48.3 72.2L48.1 72.1L47.8 72.0L47.4 72.0L46.9 72.2L46.2 72.4L45.3 72.8L44.2 73.4L42.8 74.2L41.1 75.1L39.1 76.1L37.2 77.1L37.7 76.2L38.3 75.3L38.3 74.8L37.7 74.7L36.3 75.1L36.6 74.5L38.0 73.2L38.5 72.4L38.1 72.2L37.2 72.3L38.3 71.3L40.2 69.9L41.6 68.9L42.4 68.2L42.5 67.8L41.8 67.8L40.5 68.0L38.6 68.4L39.8 67.6L41.4 66.7L42.4 66.0L42.9 65.6L43.0 65.3L42.8 65.0L42.3 64.9L41.8 64.7L41.0 64.6L40.2 64.5L39.2 64.4L38.4 64.3L38.6 63.9L38.8 63.5L39.5 63.1L40.3 62.7L41.0 62.3L41.8 61.9L42.4 61.6L43.0 61.3L43.6 61.0L44.0 60.7L44.3 60.5L44.6 60.2L44.7 60.0L44.7 59.8L44.6 59.5L44.4 59.3L44.1 59.0L43.7 58.8L43.2 58.5L42.6 58.2L41.9 57.8L41.0 57.4L40.1 57.0L39.8 56.6L40.4 56.4L41.0 56.2L41.3 56.0L41.6 55.8L42.4 55.7L43.1 55.6L43.6 55.5L43.9 55.3L44.1 55.1L44.2 54.9L44.3 54.6L44.3 54.4L44.3 54.1L44.3 53.9L44.5 53.6L44.7 53.4L44.9 53.3L45.3 53.2L45.8 53.1L46.2 53.1L46.7 53.1L47.2 53.1L47.6 53.1L48.0 53.0L48.2 52.9L48.2 52.7L48.1 52.4L47.9 52.0L47.6 51.5L47.2 51.0L46.7 50.3L46.2 49.7L45.8 49.0L45.4 48.3L45.1 47.8L45.0 47.3L45.0 46.9L45.1 46.6L45.3 46.4L45.6 46.2L46.0 46.2L46.5 46.3L47.4 46.8L48.2 47.3L48.9 47.6L49.4 47.9L49.8 47.9L50.0 47.8L50.0 47.5L49.9 47.0L49.8 46.4L49.6 45.7L49.4 45.0L49.2 44.2L49.1 43.5L49.1 42.9L49.2 42.5L49.3 42.1L49.5 41.8L49.8 41.7L50.1 41.6L50.5 41.6L50.8 41.6L51.1 41.6L51.5 41.5L51.7 41.4L51.9 41.1L52.1 40.8L52.2 40.2L52.3 39.6L52.4 38.8L52.4 37.8L52.4 36.6L52.3 35.2L52.3 33.6L52.3 32.0L52.3 30.5L52.4 28.8L52.8 28.4L53.3 28.4L53.9 28.9L54.8 31.1L55.5 33.1L56.2 34.7L56.7 35.9L57.2 36.8L57.6 37.5L58.0 37.9L58.4 38.3L58.7 38.6L59.1 38.9L59.4 39.2L59.7 39.6L60.0 39.9L60.3 40.2L60.6 40.5L60.9 40.7L61.2 40.7L61.5 40.5L61.8 40.2L62.1 39.7L62.5 38.9L63.0 38.1L63.5 37.1L64.0 36.0L64.6 34.8L65.2 33.6L65.9 32.4L66.6 31.3L67.3 30.2L68.0 29.3L68.2 30.3L68.0 32.5L67.8 34.6L67.6 36.6L67.4 38.4L67.2 39.8L67.2 40.8L67.3 41.5L67.5 41.7L67.9 41.5L68.6 40.7L69.6 39.3L70.9 37.3L72.7 34.6L75.0 31.0L77.9 26.8L80.9 22.5L80.5 24.5L78.8 28.6L77.2 32.2L75.9 35.1L75.0 37.3L74.3 39.1L73.9 40.3L73.7 41.2L73.7 41.7L74.0 41.8L74.7 41.6L75.6 41.0L76.9 40.1L78.4 39.0L78.8 39.1L78.1 40.5L77.4 41.8L77.1 42.7L77.1 43.2L77.5 43.2L78.5 42.9L80.1 41.9L82.7 40.1L86.5 37.5L91.7 33.9L96.3 31.1L97.0 31.4L100.2 29.9L104.0 28.0L101.3 30.9L101.2 31.9L103.2 31.5L99.2 34.9L93.4 39.4L88.7 42.8L85.3 45.4L82.9 47.2L81.4 48.5L80.6 49.3L80.4 49.8L80.6 50.1L81.0 50.3L81.6 50.4L82.3 50.5L82.5 50.8L82.5 51.2L82.4 51.6L82.4 52.0L82.5 52.3L82.7 52.6L83.2 52.9L83.9 53.0L85.2 53.0L87.1 52.9L89.9 52.7L93.7 52.3L98.6 51.8L104.3 51.3L106.8 51.5L101.2 53.2L95.8 54.6L91.4 55.7L88.1 56.6L85.6 57.3L83.9 57.8L82.8 58.3L82.2 58.7L82.1 59.0L82.3 59.3L82.8 59.7ZM82.30 34.88A5.91 1.89 311.6 1 1 90.15 26.04A5.91 1.89 311.6 1 1 82.30 34.88ZM90.06 35.84A3.30 1.85 321.2 1 1 95.20 31.71A3.30 1.85 321.2 1 1 90.06 35.84ZM78.85 26.35A2.65 1.54 299.3 1 1 81.44 21.71A2.65 1.54 299.3 1 1 78.85 26.35ZM110.13 50.69A2.29 0.94 349.5 1 1 114.64 49.85A2.29 0.94 349.5 1 1 110.13 50.69ZM91.09 37.29A2.75 1.10 323.9 1 1 95.54 34.04A2.75 1.10 323.9 1 1 91.09 37.29ZM103.42 31.57A2.97 1.19 326.8 1 1 108.40 28.31A2.97 1.19 326.8 1 1 103.42 31.57ZM53.88 92.29A2.60 1.31 100.7 1 1 52.91 97.41A2.60 1.31 100.7 1 1 53.88 92.29ZM97.56 29.46A1.29 0.91 320.9 1 1 99.56 27.84A1.29 0.91 320.9 1 1 97.56 29.46ZM24.54 22.47A1.00 0.59 226.6 1 1 23.17 21.02A1.00 0.59 226.6 1 1 24.54 22.47ZM88.18 20.42A0.51 0.44 305.4 1 1 88.77 19.59A0.51 0.44 305.4 1 1 88.18 20.42ZM101.12 82.56A0.37 0.35 388.7 1 1 101.77 82.92A0.37 0.35 388.7 1 1 101.12 82.56ZM60.21 15.19A1.10 0.72 270.3 1 1 60.22 12.98A1.10 0.72 270.3 1 1 60.21 15.19ZM72.45 38.80A0.86 0.65 300.4 1 1 73.33 37.31A0.86 0.65 300.4 1 1 72.45 38.80ZM38.65 8.30A0.37 0.35 247.6 1 1 38.37 7.61A0.37 0.35 247.6 1 1 38.65 8.30ZM64.47 96.27A2.00 1.28 443.0 1 1 64.96 100.24A2.00 1.28 443.0 1 1 64.47 96.27ZM106.11 54.23A0.59 0.35 352.9 1 1 107.28 54.08A0.59 0.35 352.9 1 1 106.11 54.23ZM17.74 81.42A0.52 0.44 153.1 1 1 16.81 81.90A0.52 0.44 153.1 1 1 17.74 81.42ZM36.89 26.33A1.09 0.89 235.5 1 1 35.67 24.54A1.09 0.89 235.5 1 1 36.89 26.33ZM4.35 63.11A1.36 0.80 176.8 1 1 1.64 63.27A1.36 0.80 176.8 1 1 4.35 63.11ZM63.82 20.16A1.28 0.84 275.5 1 1 64.06 17.63A1.28 0.84 275.5 1 1 63.82 20.16ZM65.69 11.33A0.78 0.51 276.7 1 1 65.87 9.77A0.78 0.51 276.7 1 1 65.69 11.33ZM41.49 18.15A1.36 1.07 246.1 1 1 40.39 15.66A1.36 1.07 246.1 1 1 41.49 18.15ZM47.87 23.37A0.84 0.54 251.7 1 1 47.34 21.77A0.84 0.54 251.7 1 1 47.87 23.37ZM90.26 65.02A0.68 0.47 369.4 1 1 91.59 65.25A0.68 0.47 369.4 1 1 90.26 65.02ZM23.35 56.09A1.37 0.83 186.1 1 1 20.61 55.80A1.37 0.83 186.1 1 1 23.35 56.09ZM59.34 93.16A0.56 0.35 91.1 1 1 59.32 94.29A0.56 0.35 91.1 1 1 59.34 93.16ZM47.61 85.85A0.81 0.47 115.6 1 1 46.91 87.31A0.81 0.47 115.6 1 1 47.61 85.85ZM86.76 36.50A1.38 0.81 318.7 1 1 88.83 34.68A1.38 0.81 318.7 1 1 86.76 36.50ZM11.35 47.03A0.57 0.38 194.9 1 1 10.25 46.73A0.57 0.38 194.9 1 1 11.35 47.03ZM103.34 37.03A1.00 0.58 332.1 1 1 105.11 36.10A1.00 0.58 332.1 1 1 103.34 37.03ZM43.71 32.75A1.53 0.99 239.1 1 1 42.14 30.13A1.53 0.99 239.1 1 1 43.71 32.75ZM102.44 33.73A0.47 0.35 328.2 1 1 103.24 33.24A0.47 0.35 328.2 1 1 102.44 33.73ZM77.82 37.42A1.33 0.83 308.3 1 1 79.48 35.32A1.33 0.83 308.3 1 1 77.82 37.42ZM93.03 104.02A0.50 0.35 53.1 1 1 93.63 104.82A0.50 0.35 53.1 1 1 93.03 104.02ZM106.87 34.66A0.67 0.43 331.6 1 1 108.04 34.02A0.67 0.43 331.6 1 1 106.87 34.66ZM82.98 80.66A1.93 1.09 402.0 1 1 85.85 83.24A1.93 1.09 402.0 1 1 82.98 80.66ZM96.19 82.54A1.91 1.15 391.9 1 1 99.43 84.56A1.91 1.15 391.9 1 1 96.19 82.54ZM98.27 29.38A1.45 0.82 321.3 1 1 100.53 27.57A1.45 0.82 321.3 1 1 98.27 29.38ZM89.54 58.96A1.30 0.73 358.0 1 1 92.15 58.87A1.30 0.73 358.0 1 1 89.54 58.96ZM62.05 116.37A0.39 0.35 87.9 1 1 62.07 117.14A0.39 0.35 87.9 1 1 62.05 116.37ZM5.93 52.88A0.96 0.61 187.5 1 1 4.03 52.63A0.96 0.61 187.5 1 1 5.93 52.88ZM94.33 50.38A0.57 0.45 344.3 1 1 95.43 50.07A0.57 0.45 344.3 1 1 94.33 50.38ZM67.13 36.74A1.41 1.35 287.0 1 1 67.96 34.04A1.41 1.35 287.0 1 1 67.13 36.74ZM26.90 53.20A0.60 0.35 191.6 1 1 25.72 52.96A0.60 0.35 191.6 1 1 26.90 53.20ZM94.87 17.40A0.65 0.41 309.3 1 1 95.70 16.39A0.65 0.41 309.3 1 1 94.87 17.40ZM90.59 97.91A0.83 0.52 51.1 1 1 91.63 99.21A0.83 0.52 51.1 1 1 90.59 97.91ZM72.91 6.27A0.87 0.77 283.5 1 1 73.31 4.59A0.87 0.77 283.5 1 1 72.91 6.27ZM22.64 98.07A0.94 0.86 134.5 1 1 21.31 99.42A0.94 0.86 134.5 1 1 22.64 98.07ZM71.12 25.25A0.72 0.50 287.8 1 1 71.56 23.89A0.72 0.50 287.8 1 1 71.12 25.25ZM75.85 88.81A1.95 1.20 61.2 1 1 77.73 92.23A1.95 1.20 61.2 1 1 75.85 88.81ZM103.61 76.28A0.67 0.46 380.5 1 1 104.87 76.75A0.67 0.46 380.5 1 1 103.61 76.28ZM64.86 20.51A0.92 0.52 277.0 1 1 65.09 18.68A0.92 0.52 277.0 1 1 64.86 20.51ZM9.81 51.42A0.76 0.63 189.7 1 1 8.31 51.16A0.76 0.63 189.7 1 1 9.81 51.42Z", "M78.5 60.0L78.1 60.3L78.0 60.5L78.0 60.8L78.0 61.1L78.0 61.3L77.8 61.6L77.5 61.8L77.0 62.0L76.4 62.2L75.7 62.4L75.0 62.5L74.2 62.6L73.5 62.7L73.0 62.8L72.6 62.9L72.4 63.0L72.5 63.2L72.7 63.5L73.1 63.8L73.6 64.2L74.3 64.6L75.0 65.1L75.8 65.7L76.7 66.3L77.7 66.9L78.8 67.7L80.1 68.6L81.5 69.6L83.1 70.7L83.0 71.1L80.7 70.3L78.6 69.6L76.8 69.1L75.5 68.7L74.7 68.5L74.2 68.5L73.9 68.6L74.0 68.9L74.2 69.3L74.5 69.9L74.9 70.5L75.4 71.2L76.0 72.0L76.6 72.8L77.1 73.7L76.6 73.7L75.6 73.2L74.6 72.7L73.7 72.3L72.9 72.0L72.3 71.7L71.8 71.6L71.3 71.5L70.9 71.4L70.6 71.4L70.2 71.4L69.9 71.3L69.5 71.3L69.2 71.2L68.8 71.1L68.5 71.0L68.1 70.8L67.8 70.7L67.5 70.6L67.2 70.6L67.0 70.6L66.8 70.7L66.7 70.8L66.6 71.1L66.6 71.4L66.6 71.8L66.6 72.3L66.6 72.7L66.6 73.1L66.5 73.5L66.4 73.9L66.3 74.3L66.2 74.6L66.1 75.0L66.1 75.5L66.1 76.2L66.2 77.4L66.6 79.2L67.1 81.9L67.9 85.7L68.8 90.1L67.9 88.7L66.5 85.0L65.4 82.1L64.6 80.2L64.1 79.2L63.7 78.7L63.4 78.6L63.1 78.7L62.8 78.9L62.5 78.7L62.2 78.4L61.9 78.0L61.6 77.7L61.3 77.3L61.0 77.0L60.7 76.6L60.5 76.2L60.2 75.8L60.0 75.4L59.8 75.0L59.6 74.7L59.4 74.4L59.1 74.3L58.9 74.3L58.7 74.5L58.4 74.9L58.1 75.7L57.7 76.9L57.2 78.6L56.5 80.8L55.7 83.6L54.8 86.6L53.9 88.5L53.7 87.5L53.9 85.1L54.1 82.8L54.3 80.6L54.5 78.8L54.7 77.2L54.8 75.9L54.9 74.9L54.9 74.1L54.9 73.5L54.9 73.0L54.8 72.7L54.6 72.6L54.4 72.6L54.1 72.7L53.7 73.0L53.3 73.4L52.8 73.9L52.3 74.4L51.7 74.9L51.4 74.8L51.2 74.7L50.9 74.8L50.4 75.0L49.8 75.5L48.9 76.4L47.6 77.7L45.9 79.4L44.0 81.3L44.2 80.4L45.8 77.8L47.1 75.7L48.1 74.0L48.7 72.9L49.1 72.2L49.1 71.7L49.0 71.5L48.8 71.4L48.4 71.4L47.9 71.5L47.4 71.7L46.7 72.0L45.9 72.3L44.9 72.8L43.8 73.4L42.5 73.9L42.5 73.5L42.9 72.8L43.1 72.3L43.0 72.0L43.0 71.6L43.6 70.8L44.0 70.2L44.4 69.7L44.6 69.2L45.1 68.6L45.5 68.1L45.9 67.6L46.2 67.2L46.3 66.9L46.3 66.6L46.3 66.4L46.1 66.2L45.9 66.0L45.5 65.9L45.1 65.8L44.6 65.8L44.2 65.7L44.1 65.4L44.2 65.1L44.4 64.8L44.6 64.5L44.8 64.2L45.1 63.9L45.5 63.5L45.9 63.2L46.3 62.9L46.6 62.6L47.0 62.4L47.2 62.1L47.4 61.9L47.5 61.7L47.5 61.5L47.3 61.3L47.1 61.2L46.7 61.0L46.2 60.8L45.6 60.6L45.1 60.4L44.9 60.2L45.3 60.0L45.6 59.8L45.8 59.6L46.0 59.4L46.1 59.2L46.1 59.0L45.9 58.7L45.5 58.5L44.9 58.2L44.2 57.9L43.4 57.5L43.1 57.2L42.8 56.9L42.4 56.5L41.7 56.1L40.8 55.6L39.6 55.0L38.2 54.3L36.3 53.5L34.0 52.4L31.4 51.2L28.6 49.8L26.2 48.4L25.1 47.5L29.2 48.4L33.2 49.5L36.6 50.4L39.3 51.2L41.3 51.7L42.8 52.0L43.7 52.2L44.3 52.1L44.6 52.0L44.7 51.8L44.8 51.5L44.8 51.2L44.9 51.0L45.0 50.7L45.1 50.5L45.4 50.3L45.7 50.2L46.0 50.1L46.2 50.0L46.4 49.8L46.5 49.6L46.4 49.2L46.1 48.6L45.6 47.8L45.0 46.9L45.5 47.0L46.4 47.4L47.0 47.6L47.4 47.6L47.7 47.5L47.9 47.3L47.9 47.0L48.0 46.7L48.0 46.2L47.9 45.8L47.8 45.2L47.7 44.5L47.3 43.6L46.8 42.3L46.0 40.7L44.9 38.5L43.5 35.8L42.5 33.6L43.3 33.9L45.3 36.2L47.2 38.6L48.7 40.4L49.8 41.7L50.6 42.5L51.2 43.1L51.7 43.4L52.1 43.6L52.4 43.7L52.8 43.8L53.1 43.9L53.4 44.0L53.7 44.0L54.0 44.1L54.3 44.2L54.6 44.2L54.8 44.1L55.0 43.9L55.2 43.6L55.3 43.1L55.5 42.6L55.6 41.8L55.7 41.0L55.7 39.9L55.8 38.7L55.9 37.4L56.0 35.9L56.1 34.4L56.3 32.9L56.7 32.9L57.3 34.0L57.8 35.8L58.3 37.5L58.7 39.0L59.1 40.2L59.4 41.1L59.7 41.7L60.0 42.0L60.3 42.1L60.5 41.8L60.8 41.3L61.2 40.6L61.5 39.7L61.9 38.6L62.4 37.3L62.9 35.7L63.5 33.9L64.2 31.9L64.8 30.8L64.9 33.2L64.8 35.6L64.7 37.7L64.7 39.3L64.8 40.4L64.9 41.1L65.1 41.4L65.4 41.4L65.6 41.8L65.7 42.3L65.9 42.7L66.1 42.9L66.4 43.0L66.6 43.1L66.9 43.1L67.2 43.2L67.5 43.2L67.7 43.3L68.0 43.4L68.3 43.4L68.7 43.3L69.1 43.1L69.7 42.7L70.4 42.0L71.4 40.9L72.7 39.5L74.4 37.5L76.4 35.1L79.0 32.2L81.9 28.9L85.0 25.6L85.9 25.5L84.1 28.9L82.2 32.2L80.5 35.1L79.1 37.5L77.9 39.6L76.9 41.2L76.2 42.6L75.6 43.7L75.2 44.6L74.9 45.4L74.7 46.0L74.5 46.5L74.4 47.0L74.4 47.4L74.4 47.8L74.4 48.2L74.3 48.6L74.4 48.9L74.4 49.2L74.4 49.5L74.5 49.8L74.7 50.0L74.9 50.2L75.2 50.3L75.6 50.4L76.0 50.4L76.6 50.4L77.1 50.4L77.7 50.5L78.3 50.5L78.9 50.5L79.4 50.7L79.8 50.8L80.1 51.0L80.4 51.3L80.5 51.6L80.0 52.2L79.3 52.7L78.8 53.3L78.3 53.7L78.1 54.1L78.2 54.4L78.7 54.5L79.7 54.6L81.3 54.5L83.6 54.2L86.8 53.9L91.0 53.4L96.5 52.8L103.4 52.1L111.5 51.4L119.9 51.0L116.3 52.4L107.6 54.3L99.8 55.8L93.4 57.0L88.5 57.9L84.8 58.5L82.1 59.0L80.3 59.4L79.1 59.7ZM53.22 91.09A1.71 0.99 102.3 1 1 52.50 94.43A1.71 0.99 102.3 1 1 53.22 91.09ZM40.79 85.32A2.96 1.63 127.2 1 1 37.22 90.03A2.96 1.63 127.2 1 1 40.79 85.32ZM90.41 74.42A4.38 1.50 25.4 1 1 98.34 78.17A4.38 1.50 25.4 1 1 90.41 74.42ZM64.87 14.87A0.68 0.59 276.2 1 1 65.01 13.51A0.68 0.59 276.2 1 1 64.87 14.87ZM103.87 49.50A0.67 0.48 346.5 1 1 105.17 49.19A0.67 0.48 346.5 1 1 103.87 49.50ZM72.01 77.55A0.80 0.63 415.6 1 1 72.92 78.87A0.80 0.63 415.6 1 1 72.01 77.55ZM66.73 27.70A0.82 0.53 281.8 1 1 67.07 26.10A0.82 0.53 281.8 1 1 66.73 27.70ZM89.16 46.76A1.96 1.27 335.6 1 1 92.73 45.14A1.96 1.27 335.6 1 1 89.16 46.76ZM3.91 50.35A0.55 0.35 189.8 1 1 2.82 50.17A0.55 0.35 189.8 1 1 3.91 50.35ZM84.95 71.25A1.83 1.24 384.3 1 1 88.28 72.76A1.83 1.24 384.3 1 1 84.95 71.25ZM37.82 84.18A1.04 0.62 132.5 1 1 36.41 85.72A1.04 0.62 132.5 1 1 37.82 84.18ZM61.46 115.51A0.80 0.72 448.5 1 1 61.50 117.10A0.80 0.72 448.5 1 1 61.46 115.51ZM77.01 46.60A2.43 1.49 321.8 1 1 80.82 43.59A2.43 1.49 321.8 1 1 77.01 46.60ZM36.92 95.93A1.21 0.93 122.7 1 1 35.60 97.97A1.21 0.93 122.7 1 1 36.92 95.93ZM81.58 40.50A0.51 0.42 317.9 1 1 82.33 39.82A0.51 0.42 317.9 1 1 81.58 40.50ZM9.74 38.46A0.57 0.47 203.2 1 1 8.69 38.01A0.57 0.47 203.2 1 1 9.74 38.46ZM69.62 41.91A1.37 1.28 298.0 1 1 70.90 39.49A1.37 1.28 298.0 1 1 69.62 41.91ZM81.92 42.28A1.99 1.49 321.1 1 1 85.01 39.78A1.99 1.49 321.1 1 1 81.92 42.28ZM69.51 35.24A1.01 0.63 291.0 1 1 70.23 33.36A1.01 0.63 291.0 1 1 69.51 35.24ZM115.66 66.42A0.89 0.72 366.6 1 1 117.42 66.62A0.89 0.72 366.6 1 1 115.66 66.42ZM57.64 21.77A0.56 0.37 266.5 1 1 57.57 20.66A0.56 0.37 266.5 1 1 57.64 21.77ZM31.66 72.26A1.34 0.98 516.6 1 1 29.20 73.32A1.34 0.98 516.6 1 1 31.66 72.26ZM75.82 46.28A2.77 1.56 319.1 1 1 80.00 42.65A2.77 1.56 319.1 1 1 75.82 46.28ZM80.95 77.63A1.90 1.06 40.1 1 1 83.85 80.08A1.90 1.06 40.1 1 1 80.95 77.63ZM56.66 30.48A1.18 0.94 263.5 1 1 56.39 28.14A1.18 0.94 263.5 1 1 56.66 30.48ZM38.82 50.77A1.28 0.72 203.6 1 1 36.48 49.74A1.28 0.72 203.6 1 1 38.82 50.77ZM35.14 10.59A0.52 0.42 243.3 1 1 34.68 9.66A0.52 0.42 243.3 1 1 35.14 10.59ZM35.61 41.12A2.14 1.25 217.7 1 1 32.21 38.49A2.14 1.25 217.7 1 1 35.61 41.12ZM51.26 19.28A0.95 0.79 257.9 1 1 50.86 17.43A0.95 0.79 257.9 1 1 51.26 19.28ZM86.82 72.87A0.58 0.40 385.6 1 1 87.86 73.37A0.58 0.40 385.6 1 1 86.82 72.87ZM83.49 79.23A1.69 1.21 399.3 1 1 86.10 81.37A1.69 1.21 399.3 1 1 83.49 79.23ZM81.89 91.86A1.10 1.04 55.5 1 1 83.14 93.67A1.10 1.04 55.5 1 1 81.89 91.86Z"];
+    const tearBase = 'position: absolute; z-index: 0; top: 104px; bottom: 0; right: 0; pointer-events: none; ';
     // Drips hang off the pink band under the hero: [x, width, length].
     const drips = [[60, 26, 52], [210, 18, 30], [330, 34, 64], [520, 20, 38], [690, 28, 58], [880, 16, 26], [1010, 30, 62], [1180, 22, 40], [1320, 26, 54]];
     let dripPath = 'M0 0H1440V18';
@@ -234,50 +372,75 @@ class Component extends DCLogic {
       dripPath += 'H' + (x + w) + 'C' + (x + w) + ' ' + (18 + L * 0.6) + ' ' + (x + w * 0.75) + ' ' + (18 + L) + ' ' + (x + w / 2) + ' ' + (18 + L) + 'C' + (x + w * 0.25) + ' ' + (18 + L) + ' ' + x + ' ' + (18 + L * 0.6) + ' ' + x + ' 18';
     });
     dripPath += 'H0Z';
-    const tapeWords = ['BERI', '/', 'UP TO 50K PUFFS', '/', 'TYPE-C', '/', 'MESH COIL', '/', '21+ ONLY', '/'];
-    const crew = [
+    const tapeWords = ['POWER', '/', 'PODS', '/', 'PUFFS', '/', 'TYPE-C', '/', 'MESH COIL', '/', '21+ ONLY', '/'];
+
+    // Product facts. Cirql values still to come from the client are shown as [brackets].
+    const devices = [
       {
-        name: 'Crush', badge: '40W', paper: '#F2508C', img: 'assets/blob/ad8952b79bf25e8fb5dcbb19894d0676.webp', alt: 'BERI Crush in Mango Bomb, orange with a gold side panel',
-        stats: 'Up to 50K puffs · 40W Crush Mode · 1.77" HD screen',
-        text: 'Quad-coil mesh, adjustable airflow and a 1,000 mAh battery behind an interactive HD screen.', feature: true
+        name: 'Crush', want: 'MORE POWER', color: '#F2508C', splat: '#FFD600', r: 4, img: 'assets/blob/ad8952b79bf25e8fb5dcbb19894d0676.webp', alt: 'BERI Crush in Mango Bomb, orange with a gold side panel',
+        why: '40W Crush Mode on a quad-coil mesh, with adjustable airflow and an HD screen. The hardest-hitting BERI.',
+        stats: ['UP TO 50K PUFFS', '40W CRUSH MODE', '1.77" HD SCREEN', '1,000 mAh']
       },
       {
-        name: 'Cliq', badge: 'POD SYSTEM', paper: '#3DD683', img: 'assets/blob/6b23305e8b326499a72d8dcd66229029.webp', alt: 'BERI Cliq in Blue Rancher',
-        stats: '50K ECO / 25K CLIQ · 18 mL pod',
-        text: 'A pre-filled, refillable pod in a 360° crystal tank, on a 900 mAh device.'
+        name: 'Cliq', want: 'FLAVOR SWAPS', color: '#3DD683', splat: '#A27AF0', r: -4, img: 'assets/blob/6b23305e8b326499a72d8dcd66229029.webp', alt: 'BERI Cliq in Blue Rancher',
+        why: 'Pre-filled pods that click on and off a 900 mAh device. Refill one, or swap to another flavor.',
+        stats: ['25 POD FLAVORS', '18 mL POD', '50K ECO / 25K CLIQ', '360° CRYSTAL TANK']
       },
       {
-        name: 'Cirql', badge: 'NEW', paper: '#A27AF0', img: 'assets/blob/46b915155efdf5133066bf9bc843675e.webp', alt: 'BERI Cirql in Lady Killer red with a gold pattern',
-        stats: 'Up to 150K puffs · Boost / Regular',
-        text: '[Cirql one-line description]'
+        name: 'Cirql', want: 'MAX PUFFS', color: '#A27AF0', splat: '#3DD683', r: 3, img: 'assets/blob/46b915155efdf5133066bf9bc843675e.webp', alt: 'BERI Cirql in Lady Killer red with a gold pattern',
+        why: 'The longest-lasting BERI, with Boost and Regular modes for when you want more or want it to last.',
+        stats: ['UP TO 150K PUFFS', 'BOOST / REGULAR']
       }
     ];
-    const tornTop = 'polygon(0 1.6%, 4% 0.3%, 9% 1.4%, 15% 0, 21% 1.2%, 27% 0.4%, 34% 1.6%, 41% 0.2%, 48% 1.1%, 55% 0, 62% 1.5%, 70% 0.3%, 77% 1.3%, 84% 0, 91% 1.4%, 96% 0.4%, 100% 1%, 100% 100%, 0 100%)';
-    const pods = [
-      ['Alaskan Mint', 'assets/blob/ac9150ab12f0d5738a73bc5106b0c5e8.webp'], ['Banana Ice', 'assets/blob/d66c77d3cb4b14e3cbd3bede2191d4d8.webp'],
-      ['Black Razz Ice', 'assets/blob/81a3493230cff8e0651598b2600f9450.webp'], ['Blue Rancher', 'assets/blob/f25c776f9928b51e92137d5dd3d5c592.webp'],
-      ['Grape Ice', 'assets/blob/be95ab696b37f18ccd43d15ffa4f37d1.webp'], ['Mango Bomb', 'assets/blob/7559ca1e134d3b396b495e40fd91424a.webp'],
-      ['Peach Ice', 'assets/blob/944b22330fa4a207d1316713bfa05ede.webp'], ['Watermelon Ice', 'assets/blob/b4b350dc0af75a21008c84f266b6acf5.webp'],
-      ['Mixed Berry', 'assets/blob/9d2c4de1cd9e8a29ae02f8f7de2cd860.webp'], ['Miami Mint', 'assets/blob/93554cb05087f94d230d36f194b120e5.webp']
+    const cur = devices[this.state.pick] || devices[0];
+    const tornTop = 'polygon(0 1.4%, 4% 0.3%, 9% 1.2%, 15% 0, 21% 1%, 27% 0.4%, 34% 1.4%, 41% 0.2%, 48% 1%, 55% 0, 62% 1.3%, 70% 0.3%, 77% 1.1%, 84% 0, 91% 1.2%, 96% 0.4%, 100% 0.9%, 100% 100%, 0 100%)';
+
+    const cmp = [
+      ['Puffs', 'Up to 50K', '50K ECO / 25K Cliq', 'Up to 150K'],
+      ['Power', '40W Crush Mode', 'ECO / Cliq modes', 'Boost / Regular'],
+      ['Battery', '1,000 mAh', '900 mAh', '[mAh]'],
+      ['E-liquid', '20 mL', '18 mL refillable pod', '[mL]'],
+      ['Flavors', '32', '25', '[count]'],
+      ['Screen', '1.77" HD', '–', '[screen]'],
+      ['Charging', 'Type-C', 'Type-C', 'Type-C']
     ];
+
+    const pods = [
+      ['Alaskan Mint', 'assets/blob/ac9150ab12f0d5738a73bc5106b0c5e8.webp', 'mint'], ['Banana Ice', 'assets/blob/d66c77d3cb4b14e3cbd3bede2191d4d8.webp', 'icy'],
+      ['Black Razz Ice', 'assets/blob/81a3493230cff8e0651598b2600f9450.webp', 'icy'], ['Blue Rancher', 'assets/blob/f25c776f9928b51e92137d5dd3d5c592.webp', 'fruit'],
+      ['Grape Ice', 'assets/blob/be95ab696b37f18ccd43d15ffa4f37d1.webp', 'icy'], ['Mango Bomb', 'assets/blob/7559ca1e134d3b396b495e40fd91424a.webp', 'fruit'],
+      ['Peach Ice', 'assets/blob/944b22330fa4a207d1316713bfa05ede.webp', 'icy'], ['Watermelon Ice', 'assets/blob/b4b350dc0af75a21008c84f266b6acf5.webp', 'icy'],
+      ['Mixed Berry', 'assets/blob/9d2c4de1cd9e8a29ae02f8f7de2cd860.webp', 'fruit'], ['Miami Mint', 'assets/blob/93554cb05087f94d230d36f194b120e5.webp', 'mint']
+    ];
+    const moodList = [['all', 'ALL', '#F4F1EA'], ['icy', 'ICY', '#7FD4FF'], ['mint', 'MINT', '#3DD683'], ['fruit', 'FRUIT & CANDY', '#FFD600']];
+    const shown = pods.filter((p) => this.state.mood === 'all' || p[2] === this.state.mood);
     // Hand-placed, uneven tilts and tape so the wall does not read as a pattern.
     const tilt = [-2.5, 1.5, -1, 3, -3, 0.5, -1.5, 2.5, -0.5, 1];
     const tape = [[-4, 50], [3, 38], [-2, 62], [5, 45], [-6, 55], [2, 50], [-3, 40], [4, 58], [-1, 48], [6, 52]];
+
+    const steps = [
+      ['1', 'Find the label', 'Look for the security label on the outside of the box.', '#FFD600', -1.5],
+      ['2', 'Scratch it', 'Scratch off the coating to show the code underneath.', '#3DD683', 1],
+      ['3', 'Enter the code', 'Type it in. Real or fake, you will know in seconds.', '#A27AF0', -0.5]
+    ];
+
     return {
-      navStyle: 'transition: background 0.3s ease, border-color 0.3s ease; border-bottom: 1px solid ' + (this.state.scrolled ? '#2E2E35' : 'transparent') + '; background: ' + (this.state.scrolled ? 'rgba(11,11,13,0.92)' : 'transparent'),
-      tearRimStyle: tearBase + 'width: 50%; background: #FFFFFF; clip-path: ' + ragged(7, 5),
-      tearPurpleStyle: tearBase + 'width: 48.8%; background-color: #A27AF0; clip-path: ' + ragged(29, 4.5),
-      tearGreenStyle: tearBase + 'width: 47.5%; background-color: #3DD683; clip-path: ' + ragged(41, 4),
-      tearPaperStyle: tearBase + 'width: 46.2%; background-color: #F2508C; clip-path: ' + ragged(19, 4),
+      tagCls: 'tag-draw' + (this.state.tagOn ? ' is-drawn' : ''),
+      navStyle: 'padding: 12px 0; transition: background 0.3s ease; background: ' + (this.state.scrolled ? 'linear-gradient(180deg, rgba(11,11,13,0.85) 0%, rgba(11,11,13,0) 100%)' : 'transparent'),
+      tearRimStyle: tearBase + 'width: 56%; background: #FFFFFF; clip-path: ' + ragged(7, 5),
+      tearPurpleStyle: tearBase + 'width: 54.8%; background-color: #A27AF0; clip-path: ' + ragged(29, 4.5),
+      tearGreenStyle: tearBase + 'width: 53.5%; background-color: #3DD683; clip-path: ' + ragged(41, 4),
+      tearPaperStyle: tearBase + 'width: 52.2%; background-color: #F2508C; clip-path: ' + ragged(19, 4),
       // Hand-sprayed paint splats on the black side: [left, top, size, colour, turn].
-      splats: [['31%', '130px', 110, '#3DD683', 0], ['29%', '46%', 76, '#FFD600', 40], ['38%', '80%', 92, '#A27AF0', -30]].map((p) => ({
+      splats: [['29%', '60px', 210, '#3DD683', 0], ['24%', '40%', 160, '#FFD600', 40], ['30%', '74%', 190, '#A27AF0', -30]].map((p, i) => ({
         color: p[3],
+        d: splatShapes[i],
         style: 'position: absolute; left: ' + p[0] + '; top: ' + p[1] + '; width: ' + p[2] + 'px; height: ' + p[2] + 'px; opacity: 0.85; transform: rotate(' + p[4] + 'deg)'
       })),
       heroDevices: [
-        { img: 'assets/blob/6b23305e8b326499a72d8dcd66229029.webp', alt: 'BERI Cliq in Blue Rancher', sticker: '25 FLAVORS', bg: '#3DD683', x: 24, y: 56, h: 400, r: -4, sr: -5, sx: '-58px', sy: '38%', left: true },
-        { img: 'assets/blob/ad8952b79bf25e8fb5dcbb19894d0676.webp', alt: 'BERI Crush in Mango Bomb', sticker: '40W', bg: '#FFD600', x: 54, y: 50, h: 450, r: 2, sr: 4, sx: '-30px', sy: '8%' },
-        { img: 'assets/blob/46b915155efdf5133066bf9bc843675e.webp', alt: 'BERI Cirql in Lady Killer red', sticker: '150K PUFFS', bg: '#FFFFFF', x: 84, y: 52, h: 520, r: 5, sr: -3, sx: '-60px', sy: '30%' }
+        { img: 'assets/blob/6b23305e8b326499a72d8dcd66229029.webp', alt: 'BERI Cliq in Blue Rancher', sticker: '25 FLAVORS', bg: '#3DD683', x: 31, y: 61, h: 380, r: -13, sr: 6, sx: '18px', sy: '86%', left: true },
+        { img: 'assets/blob/ad8952b79bf25e8fb5dcbb19894d0676.webp', alt: 'BERI Crush in Mango Bomb', sticker: '40W', bg: '#FFD600', x: 56, y: 43, h: 420, r: 10, sr: -6, sx: '-34px', sy: '6%' },
+        { img: 'assets/blob/46b915155efdf5133066bf9bc843675e.webp', alt: 'BERI Cirql in Lady Killer red', sticker: '150K PUFFS', bg: '#FFFFFF', x: 89, y: 57, h: 490, r: -8, sr: 4, sx: '-64px', sy: '34%' }
       ].map((d, i) => ({
         img: d.img,
         alt: d.alt,
@@ -288,28 +451,84 @@ class Component extends DCLogic {
       })),
       dripPath: dripPath,
       tapeA: tapeWords.concat(tapeWords).concat(tapeWords).map((t) => ({ t: t })),
-      crew: crew.map((c) => ({
-        name: c.name,
-        badge: c.badge,
-        img: c.img,
-        alt: c.alt,
-        text: c.text,
-        stats: c.stats,
-        cta: 'VIEW BERI ' + c.name.toUpperCase() + ' →',
-        cls: 'poster grain' + (c.feature ? ' crew-feature' : ''),
-        style: 'position: relative; overflow: hidden; box-sizing: border-box; display: flex; ' + (c.feature ? 'flex-direction: column; min-height: 780px; ' : 'flex-direction: row; min-height: 378px; ') + 'background-color: ' + c.paper + '; color: #0B0B0D; clip-path: ' + tornTop,
-        bodyStyle: 'position: relative; z-index: 1; box-sizing: border-box; flex: 1 1 50%; min-width: 0; display: flex; flex-direction: column; gap: 14px; padding: ' + (c.feature ? '48px 40px 24px' : '40px 28px 32px'),
-        nameStyle: 'margin: 0; font-family: var(--display); font-weight: 400; font-size: ' + (c.feature ? '150px' : '96px') + '; line-height: 0.82; text-transform: uppercase',
-        imgBoxStyle: 'position: relative; flex: 1 1 ' + (c.feature ? 'auto' : '40%') + '; min-width: 0; display: flex; align-items: flex-end; justify-content: center; padding: ' + (c.feature ? '0 24px 0' : '24px 12px 0 0'),
-        imgStyle: 'display: block; height: ' + (c.feature ? '420px' : '300px') + '; width: auto; max-width: 100%; object-fit: contain; filter: drop-shadow(10px 18px 16px rgba(0,0,0,0.35))'
+      // Second tape behind the yellow one, running the other way with the nicotine warning.
+      tapeB: [0, 1, 2, 3, 4, 5].map(() => ({ t: 'WARNING: This product contains nicotine. Nicotine is an addictive chemical.  ✕' })),
+
+      pickBtns: devices.map((d, i) => {
+        const on = i === this.state.pick;
+        return {
+          label: d.want,
+          pressed: on ? 'true' : 'false',
+          pick: () => this.setState({ pick: i }),
+          style: 'display: inline-flex; flex-direction: column; align-items: flex-start; gap: 2px; min-height: 76px; padding: 12px 26px; cursor: pointer; font-family: var(--display); font-size: 28px; letter-spacing: 0.04em; line-height: 1.05; text-align: left; border: 3px solid ' + d.color + '; background: ' + (on ? d.color : 'transparent') + '; color: ' + (on ? '#0B0B0D' : d.color) + '; box-shadow: ' + (on ? '6px 6px 0 #F4F1EA' : 'none')
+        };
+      }),
+      matchStyle: 'position: relative; overflow: hidden; box-sizing: border-box; background-color: ' + cur.color + '; color: #0B0B0D; clip-path: ' + tornTop + '; transition: background-color 0.35s ease',
+      match: {
+        name: cur.name,
+        why: cur.why,
+        img: cur.img,
+        alt: cur.alt,
+        splat: cur.splat,
+        splatD: splatShapes[3 + (this.state.pick % 3)],
+        cta: 'COMPARE ALL THREE →',
+        imgStyle: '--r: ' + cur.r + 'deg; position: relative; display: block; height: 470px; width: auto; max-width: 100%; object-fit: contain; filter: drop-shadow(16px 26px 20px rgba(0,0,0,0.38))',
+        stats: cur.stats.map((t, i) => ({
+          t: t,
+          style: 'display: inline-block; padding: 6px 12px; border: 2px solid #0B0B0D; background: ' + (i === 0 ? '#0B0B0D' : '#F4F1EA') + '; color: ' + (i === 0 ? cur.color : '#0B0B0D') + '; font-family: var(--display); font-size: 18px; letter-spacing: 0.04em; transform: rotate(' + [-1.5, 1, -0.5, 1.5][i % 4] + 'deg)'
+        }))
+      },
+
+      cmpHead: devices.map((d) => ({
+        name: d.name,
+        style: 'display: inline-block; padding: 4px 14px; background: ' + d.color + '; color: #0B0B0D; font-family: var(--display); font-size: 30px; letter-spacing: 0.04em; text-transform: uppercase; transform: rotate(-2deg)'
       })),
-      pods: pods.map((p, i) => ({
+      cmpRows: cmp.map((r) => ({
+        label: r[0],
+        cells: r.slice(1).map((t, i) => ({
+          t: t,
+          style: 'padding: 20px 28px; font-size: 18px; font-weight: 600; color: ' + (t.charAt(0) === '[' || t === '–' ? '#6E6A62' : '#F4F1EA') + (this.state.pick === i ? '; background: rgba(255,255,255,0.04)' : '')
+        }))
+      })),
+
+      moods: moodList.map((m) => {
+        const on = this.state.mood === m[0];
+        return {
+          label: m[1],
+          count: String(m[0] === 'all' ? pods.length : pods.filter((p) => p[2] === m[0]).length),
+          pressed: on ? 'true' : 'false',
+          pick: () => this.setState({ mood: m[0] }),
+          style: 'min-height: 52px; padding: 0 22px; cursor: pointer; font-family: var(--display); font-size: 20px; letter-spacing: 0.08em; border: 2px solid ' + (on ? m[2] : '#3A3A42') + '; background: ' + (on ? m[2] : 'transparent') + '; color: ' + (on ? '#0B0B0D' : '#F4F1EA')
+        };
+      }),
+      pods: shown.map((p, i) => ({
         name: p[0],
         img: p[1],
         alt: 'BERI Cliq pod in ' + p[0],
         style: 'position: relative; margin: 0; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px; padding: 10px 10px 14px; background: #FFFFFF; box-shadow: 0 10px 18px rgba(0,0,0,0.5); transform: rotate(' + tilt[i % tilt.length] + 'deg)',
         tapeStyle: 'position: absolute; left: ' + tape[i % tape.length][1] + '%; top: -11px; width: 70px; height: 22px; transform: translateX(-50%) rotate(' + tape[i % tape.length][0] + 'deg); background: rgba(239,230,214,0.85)'
-      }))
+      })),
+
+      steps: steps.map((s) => ({
+        n: s[0],
+        title: s[1],
+        text: s[2],
+        style: 'position: relative; box-sizing: border-box; display: flex; flex-direction: column; gap: 12px; padding: 32px 30px 36px; background: #0B0B0D; border: 2px dashed #3A3A42; transform: rotate(' + s[4] + 'deg)',
+        numStyle: 'font-family: var(--tag-fill); font-size: 120px; line-height: 0.9; color: ' + s[3] + '; -webkit-text-stroke: 2px #0B0B0D; text-shadow: 5px 5px 0 #F4F1EA'
+      })),
+
+      wsShop: this.state.wsShop,
+      wsCity: this.state.wsCity,
+      onShop: (e) => this.setState({ wsShop: e.target.value }),
+      onCity: (e) => this.setState({ wsCity: e.target.value }),
+      sendWs: (e) => {
+        e.preventDefault();
+        const shop = this.state.wsShop.trim();
+        const city = this.state.wsCity.trim();
+        const subject = 'Wholesale request' + (shop ? ': ' + shop : '');
+        const body = 'Shop: ' + (shop || '-') + '\nCity: ' + (city || '-') + '\n\nWe would like wholesale pricing for BERI Crush, Cliq and Cirql.';
+        window.location.href = 'mailto:wholesale@beridisposable.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      }
     };
   }
 }
